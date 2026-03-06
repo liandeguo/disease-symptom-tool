@@ -1,42 +1,32 @@
 <script>
 	import { page } from '$app/stores';
+	import TrendingUpIcon from '@lucide/svelte/icons/trending-up';
+	import * as Chart from '$lib/components/ui/chart/index.js';
+	import * as Card from '$lib/components/ui/card/index.js';
+	import { BarChart } from 'layerchart';
+	import { scaleBand } from 'd3-scale';
+	import { cubicInOut } from 'svelte/easing';
+	import * as Table from '$lib/components/ui/table/index.js';
 	import dataset from '$lib/data/dataset.json';
 
-	let entry = null;
+	import Medication from '$lib/components/data/medication.svelte';
+	import Symptoms from '$lib/components/data/symptoms.svelte';
+	import Tests from '$lib/components/data/tests.svelte';
 	let id = '';
-
 	$: id = $page.url.searchParams.get('id');
-	$: if (id) {
-		entry = dataset.find((d) => d.id == id);
-	}
+
 	console.log(dataset);
 </script>
 
-<main>
-	{#if !id}
-		<h2>s</h2>
-	{:else if !entry}
-		<h2>x</h2>
-	{:else}
-		{entry.name}
-		<hr />
-		<h2>Symptoms</h2>
-		<br />
-		{#each entry.symptoms as symptom}
-			<h3>{symptom.symptom}</h3>
-			<h3>{symptom.percentage}</h3>
-		{/each}
-		<hr />
-		<h2>Common Tests</h2>
-		<br />
-		{#each entry.commonTestProcedures as test}
-			<h3>{test}</h3>
-		{/each}
-		<hr />
-		<h2>Medication</h2>
-		<br />
-		{#each entry.commonMedication as medication}
-			<h3>{medication}</h3>
-		{/each}
-	{/if}
+<main class="h-screen w-screen bg-[#f5f5f5]">
+	{dataset[id].name}
+	<div class="w-1/2">
+		<Symptoms index={id} />
+	</div>
+	<div class="w-1/2">
+		<Tests index={id} />
+	</div>
+	<div class="w-1/2">
+		<Medication index={id} />
+	</div>
 </main>
