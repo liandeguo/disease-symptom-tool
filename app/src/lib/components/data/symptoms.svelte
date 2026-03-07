@@ -32,7 +32,13 @@
 				y="symptom"
 				axis="y"
 				rule={false}
-				series={[{ key: 'percentage', label: 'x', color: chartConfig.percentage.color }]}
+				series={[
+					{
+						key: 'percentage',
+						label: 'Percentage of patients with this symptom',
+						color: chartConfig.percentage.color
+					}
+				]}
 				padding={{ right: 16 }}
 				props={{
 					bars: {
