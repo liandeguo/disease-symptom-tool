@@ -1,7 +1,7 @@
 <script>
   import { Separator } from "$lib/components/ui/separator/index.js";
 </script>
-<div class="w-screen max-sm:hidden">
+<div class="w-screen sm:hidden">
     <Separator />
     <div class="flex justify-between items-start mt-auto p-3 max-sm:block">
         <div><h2 class="font-bold">Symptom Explorer.</h2> <h3>© 2026 Leander Guo</h3></div>

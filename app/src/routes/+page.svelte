@@ -3,6 +3,7 @@
 	import * as AlertDialog from '$lib/components/ui/alert-dialog/index.js';
 	import * as Command from '$lib/components/ui/command/index.js';
 	import Footer from '$lib/components/footer.svelte'
+	import FooterMobile from '$lib/components/footer_mobile.svelte'
 	import { toSlug } from '$lib/data/slug.js';
 
 	let query = '';
@@ -18,13 +19,13 @@
 			<Command.Input placeholder="" bind:value={query}/>
 			<Command.List>
 				<Command.Empty>No results found.</Command.Empty>
-				<Command.Group heading="Last Searches">
+				<!-- <Command.Group heading="Last Searches">
 						<Command.LinkItem href={''}>
-							<!-- <a href={'/disease?id=' + disease.id}> {disease.name}</a> -->
+							<a href={'/disease?id=' + disease.id}> {disease.name}</a>
 						</Command.LinkItem>
-				</Command.Group>
+				</Command.Group> -->
 				<Command.Group heading="Suggestions">
-					{#each filtered as disease}
+					{#each dataset as disease}
 						<Command.LinkItem href={'/diseases/' + toSlug(disease.name)}>
 							{disease.name}
 						</Command.LinkItem>

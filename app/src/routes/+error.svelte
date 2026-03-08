@@ -5,6 +5,7 @@
     import { toSlug } from '$lib/data/slug.js';
     import database from '$lib/data/dataset.json'
     import Footer from '$lib/components/footer.svelte'
+    import FooterMobile from '$lib/components/footer_mobile.svelte'
     
     let filter
 

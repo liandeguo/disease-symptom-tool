@@ -10,6 +10,7 @@
 	import * as Resizable from '$lib/components/ui/resizable/index.js';
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb/index.js';
 	import Footer from '$lib/components/footer.svelte'
+	import FooterMobile from '$lib/components/footer_mobile.svelte'
 	import Medication from '$lib/components/data/medication.svelte';
 	import Symptoms from '$lib/components/data/symptoms.svelte';
 	import Tests from '$lib/components/data/tests.svelte';
@@ -43,8 +44,8 @@
 
 <Resizable.PaneGroup direction="vertical" class="min-h-screen">
 	<Resizable.Pane defaultSize={7.5}>
-		<div class="flex flex-col items-center justify-start p-4">
-			<Breadcrumb.Root>
+		<div class="flex items-center justify-between p-4">
+			<Breadcrumb.Root class="flex-1">
 				<Breadcrumb.List>
 					<Breadcrumb.Item>
 						<Breadcrumb.Link href="/">Search</Breadcrumb.Link>
@@ -55,7 +56,8 @@
 					</Breadcrumb.Item>
 				</Breadcrumb.List>
 			</Breadcrumb.Root>
-			<h1 class="font-[SourceSerif] text-3xl">{disease.name}</h1>
+			<h1 class="font-[SourceSerif] text-3xl flex-1">{disease.name}</h1>
+			<div class="flex-1"></div>
 		</div>
 	</Resizable.Pane>
 	<Resizable.Handle disabled />
@@ -84,3 +86,4 @@
 	<Footer/>
 </Resizable.PaneGroup>
 
+<FooterMobile></FooterMobile>
