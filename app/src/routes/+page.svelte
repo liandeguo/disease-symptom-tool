@@ -10,7 +10,11 @@
 	// Filter only for the disease searched, slice 10 for faster rendering
 	$: filtered = dataset.filter(d => d.name.toLowerCase().includes(query.toLowerCase()))
 </script>
-
+<svelte:head>
+	<title>Symptom Explorer - Built by Leander Guo</title>
+ 	<meta name="description" content="Search 700+ diseases and explore their associated symptoms with frequency data.">
+ 	<meta name="author" content="Leander Guo" />
+</svelte:head>
 <main class="flex h-screen w-screen flex-col items-center justify-between bg-[#f5f5f5]">
 	<div></div>
 	<div class="flex flex-col items-center justify-center px-8">

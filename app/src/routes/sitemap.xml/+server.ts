@@ -10,7 +10,7 @@ function toSlug(name: string): string {
 }
 
 export const GET: RequestHandler = async () => {
-  const baseUrl = 'https://your-url.vercel.app'; // replace with your actual URL
+  const baseUrl = 'https://symptom-explorer.liande.me'; // replace with your actual URL
 
   const staticPages = [
     { url: '/', priority: '1.0', changefreq: 'weekly' },
