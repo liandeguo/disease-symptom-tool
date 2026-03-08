@@ -4,10 +4,8 @@
 <div class="w-screen max-sm:hidden">
     <Separator />
     <div class="flex justify-between items-start mt-auto p-3 max-sm:block">
-        <div><h2 class="font-bold">Symptom Explorer.</h2> <h3>© 2026 Leander Guo</h3></div>
-        <div><span class="text-center">For educational and research purposes only. Not a substitute for 
-        professional medical advice, diagnosis, or treatment. <br>If you are 
-        experiencing symptoms, consult a licensed healthcare provider.</span></div>
+        <div><h2 class="font-bold">Symptom Explorer</h2> <h3>© 2026 Leander Guo</h3></div>
+        <div><span class="text-center">For educational purposes only — not a substitute for professional medical advice.<br>If you are experiencing symptoms, please consult a licensed healthcare provider.</span></div>
         <div>
             <span class="ml-3">Data sourced from <a target="_blank" class="underline" href="https://www.kaggle.com/datasets/hagari/disease-and-their-symptoms/data">Kaggle</a></span>
             <br>

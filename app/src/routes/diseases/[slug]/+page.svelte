@@ -14,6 +14,11 @@
 	import Medication from '$lib/components/data/medication.svelte';
 	import Symptoms from '$lib/components/data/symptoms.svelte';
 	import Tests from '$lib/components/data/tests.svelte';
+	import InfoBox from '$lib/components/data/infobox.svelte';
+	import { wikipedia } from '$lib/data/api.js'
+	import { toSlug } from '$lib/data/slug.js';
+	import { onMount } from 'svelte';
+	import Separator from '$lib/components/ui/separator/separator.svelte';
 	
 	export let data;
 	const { disease, id } = data;
@@ -32,7 +37,27 @@
 		}
 	}
 	getICD(disease.name)
-	console.log(id)
+
+	let info = '';
+	wikipedia(toSlug(disease.name)).then(data => {
+		info = data
+	})
+
+	let orientation = 'horizontal';
+	const smBreakpoint = 640;
+
+	function updateOrientation() {
+		orientation = window.innerWidth > smBreakpoint ? 'horizontal' : 'vertical';
+	}
+
+	onMount(() => {
+		updateOrientation(); // set initial value
+		window.addEventListener('resize', updateOrientation);
+
+		return () => {
+		window.removeEventListener('resize', updateOrientation);
+		};
+	});
 </script>
 
 <svelte:head>
@@ -42,48 +67,83 @@
   <meta property="og:description" content="Symptom frequency data for {disease.name}. An open-source medical education tool." />
 </svelte:head>
 
-<Resizable.PaneGroup direction="vertical" class="min-h-screen">
-	<Resizable.Pane defaultSize={7.5}>
-		<div class="flex items-center justify-between p-4">
-			<Breadcrumb.Root class="flex-1">
-				<Breadcrumb.List>
-					<Breadcrumb.Item>
-						<Breadcrumb.Link href="/">Search</Breadcrumb.Link>
-					</Breadcrumb.Item>
-					<Breadcrumb.Separator />
-					<Breadcrumb.Item>
-						<Breadcrumb.Page>{disease.name}</Breadcrumb.Page>
-					</Breadcrumb.Item>
-				</Breadcrumb.List>
-			</Breadcrumb.Root>
-			<h1 class="font-[SourceSerif] text-3xl flex-1">{disease.name}</h1>
-			<div class="flex-1"></div>
-		</div>
-	</Resizable.Pane>
-	<Resizable.Handle disabled />
-	<Resizable.Pane defaultSize={75}>
-		<Resizable.PaneGroup direction="horizontal">
-			<Resizable.Pane maxSize="50">
-				<div class="overflow-auto h-full scrollbar-hide">
-					<div class="m-4">
-						<Symptoms index={id} />
+{#if orientation == 'horizontal'}
+	<Resizable.PaneGroup direction="vertical" class="min-h-screen">
+		<Resizable.Pane defaultSize={7.5}>
+			<div class="flex items-center justify-between p-4">
+				<Breadcrumb.Root class="flex-1">
+					<Breadcrumb.List>
+						<Breadcrumb.Item>
+							<Breadcrumb.Link href="/">Search</Breadcrumb.Link>
+						</Breadcrumb.Item>
+						<Breadcrumb.Separator />
+						<Breadcrumb.Item>
+							<Breadcrumb.Page>{disease.name}</Breadcrumb.Page>
+						</Breadcrumb.Item>
+					</Breadcrumb.List>
+				</Breadcrumb.Root>
+				<h1 class="font-[SourceSerif] text-center text-3xl flex-1">{disease.name}</h1>
+				<div class="flex-1"></div>
+			</div>
+		</Resizable.Pane>
+		<Resizable.Handle disabled />
+		<Resizable.Pane defaultSize={75}>
+			<Resizable.PaneGroup direction="horizontal">
+				<Resizable.Pane maxSize="50">
+					<div class="overflow-auto h-full scrollbar-hide">
+						<div class="m-4">
+							<Symptoms index={id} />
+						</div>
+						<div class="m-4">
+							<Tests index={id} />
+						</div>
 					</div>
+				</Resizable.Pane>
+				<Resizable.Handle />
+				<Resizable.Pane maxSize="50">
 					<div class="m-4">
-						<Tests index={id} />
+						<Medication index={id} />
+					</div></Resizable.Pane
+				>
+				<Resizable.Handle />
+				<Resizable.Pane maxSize="50">
+					<div class="m-4">				
+						<InfoBox extract={info}/>
 					</div>
-				</div>
-			</Resizable.Pane>
-			<Resizable.Handle />
-			<Resizable.Pane maxSize="50">
-				<div class="m-4">
-					<Medication index={id} />
-				</div></Resizable.Pane
-			>
-			<Resizable.Handle />
-			<Resizable.Pane maxSize="50">Three</Resizable.Pane>
-		</Resizable.PaneGroup>
-	</Resizable.Pane>
-	<Footer/>
-</Resizable.PaneGroup>
+				</Resizable.Pane>
+			</Resizable.PaneGroup>
+		</Resizable.Pane>
+		<Footer/>
+	</Resizable.PaneGroup>
+{:else}
+	<div class="p-4">
+		<Breadcrumb.Root class="flex-1">
+			<Breadcrumb.List>
+				<Breadcrumb.Item>
+					<Breadcrumb.Link href="/">Search</Breadcrumb.Link>
+				</Breadcrumb.Item>
+				<Breadcrumb.Separator />
+				<Breadcrumb.Item>
+					<Breadcrumb.Page>{disease.name}</Breadcrumb.Page>
+				</Breadcrumb.Item>
+			</Breadcrumb.List>
+		</Breadcrumb.Root>
+		<h1 class="font-[SourceSerif] text-3xl">{disease.name}</h1>
+	</div>
+	<Separator></Separator>
+	<div class="m-4">				
+		<InfoBox extract={info}/>
+	</div>
+	<div class="m-4">
+		<Symptoms index={id} />
+	</div>
+	<div class="m-4">
+		<Tests index={id} />
+	</div>
+	<div class="m-4">
+		<Medication index={id} />
+	</div>
+{/if}
+
 
 <FooterMobile></FooterMobile>

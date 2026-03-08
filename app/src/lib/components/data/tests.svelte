@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	import TrendingUpIcon from '@lucide/svelte/icons/trending-up';
 	import * as Chart from '$lib/components/ui/chart/index.js';
 	import * as Card from '$lib/components/ui/card/index.js';
@@ -13,8 +13,8 @@
 
 <Card.Root>
 	<Card.Header>
-		<Card.Title>Test Procedures</Card.Title>
-		<Card.Description>Test Procedures used to diagnose {dataset[index].name}</Card.Description>
+		<Card.Title>Diagnostic Procedures</Card.Title>
+		<Card.Description>Common procedures used to confirm a {dataset[index].name} diagnosis</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<Table.Root>

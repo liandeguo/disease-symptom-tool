@@ -12,13 +12,19 @@
 		percentage: { label: 'x', color: '#262626' },
 		label: { color: 'var(--background)' }
 	} satisfies Chart.ChartConfig;
+
+	const longestSymptom = Math.max(...chartData.map((d) => d.symptom.length));
+	const leftPadding = longestSymptom * 6;
+
+	const percent = (v) => `${v}%`;
+
 </script>
 
 <Card.Root>
 	<Card.Header>
-		<Card.Title>Symptoms</Card.Title>
+		<Card.Title>Symptom Frequency</Card.Title>
 		<Card.Description
-			>Symptoms coming from {dataset[index].name} per one hundred patients</Card.Description
+			>Reported in patients diagnosed with {dataset[index].name} — per 100 cases</Card.Description
 		>
 	</Card.Header>
 	<Card.Content>
@@ -32,14 +38,15 @@
 				y="symptom"
 				axis="y"
 				rule={false}
+				tooltip={false}
 				series={[
 					{
 						key: 'percentage',
 						label: 'Percentage of patients with this symptom',
-						color: chartConfig.percentage.color
+						color: chartConfig.percentage.color,
 					}
 				]}
-				padding={{ right: 16 }}
+				padding={{ left: leftPadding, right: 16 }}
 				props={{
 					bars: {
 						stroke: 'none',
@@ -54,11 +61,15 @@
 					},
 					highlight: { area: { fill: 'none' } },
 					yAxis: {
-						tickLabelProps: { textAnchor: 'start', dx: 6, class: 'stroke-none fill-background!' },
+						tickLabelProps: {
+							textAnchor: 'end',
+							dx: -6,
+							class: 'fill-foreground'
+						},
 						tickLength: 0
 					}
 				}}
-			></BarChart>
+			/>
 		</Chart.Container>
 	</Card.Content>
 </Card.Root>

@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	import TrendingUpIcon from '@lucide/svelte/icons/trending-up';
 	import * as Chart from '$lib/components/ui/chart/index.js';
 	import * as Card from '$lib/components/ui/card/index.js';
@@ -14,9 +14,9 @@
 
 <Card.Root>
 	<Card.Header>
-		<Card.Title>Common Medication</Card.Title>
+		<Card.Title>Common Medications</Card.Title>
 		<Card.Description
-			>This list contains drugs that are usually admministered for {dataset[index]
+			>Medications commonly administered in the treatment of  {dataset[index]
 				.name}</Card.Description
 		>
 	</Card.Header>
