@@ -13,9 +13,9 @@
 
 <main class="flex h-screen w-screen flex-col items-center justify-between bg-[#f5f5f5]">
 	<div></div>
-	<div class="flex flex-col items-center justify-center">
+	<div class="flex flex-col items-center justify-center px-8">
 		<h1 class="mb-5 font-['SourceSerif'] text-4xl">Search for a disease.</h1>
-		<Command.Root class="w-150 rounded-lg border shadow-md md:min-w-112.5">
+		<Command.Root class="sm:w-150 rounded-lg border shadow-md ">
 			<Command.Input placeholder="" bind:value={query}/>
 			<Command.List>
 				<Command.Empty>No results found.</Command.Empty>
@@ -34,5 +34,7 @@
 			</Command.List>
 		</Command.Root>
 	</div>
+	<FooterMobile/>
 	<Footer></Footer>
 </main>
+
