@@ -35,7 +35,7 @@
 </script>
 
 <svelte:head>
-  <title>{data.disease.name} — Symptoms & Frequency | Symptom Explorer</title>
+  <title>{disease.name} — Symptoms & Frequency | Symptom Explorer</title>
   <meta name="description" content="Explore symptoms associated with {disease.name}. See frequency data across 300+ symptoms. Built by Leander Guo" />
   <meta property="og:title" content="{disease.name} — Symptom Explorer" />
   <meta property="og:description" content="Symptom frequency data for {disease.name}. An open-source medical education tool." />

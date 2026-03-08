@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	import dataset from '$lib/data/dataset.json';
 	import * as AlertDialog from '$lib/components/ui/alert-dialog/index.js';
 	import * as Command from '$lib/components/ui/command/index.js';
@@ -7,8 +7,6 @@
 	let query = '';
 	// Filter only for the disease searched, slice 10 for faster rendering
 	$: filtered = dataset.filter(d => d.name.toLowerCase().includes(query.toLowerCase()))
-
-
 </script>
 
 <main class="flex h-screen w-screen flex-col items-center bg-[#f5f5f5]">
