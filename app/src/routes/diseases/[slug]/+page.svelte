@@ -9,7 +9,7 @@
 	import * as Table from '$lib/components/ui/table/index.js';
 	import * as Resizable from '$lib/components/ui/resizable/index.js';
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb/index.js';
-
+	import Footer from '$lib/components/footer.svelte'
 	import Medication from '$lib/components/data/medication.svelte';
 	import Symptoms from '$lib/components/data/symptoms.svelte';
 	import Tests from '$lib/components/data/tests.svelte';
@@ -81,4 +81,6 @@
 			<Resizable.Pane maxSize="50">Three</Resizable.Pane>
 		</Resizable.PaneGroup>
 	</Resizable.Pane>
+	<Footer/>
 </Resizable.PaneGroup>
+
