@@ -15,10 +15,12 @@
 	import Symptoms from '$lib/components/data/symptoms.svelte';
 	import Tests from '$lib/components/data/tests.svelte';
 	import InfoBox from '$lib/components/data/infobox.svelte';
-	import { wikipedia } from '$lib/data/api.js'
+	import ClinicalTrials from '$lib/components/data/clinicalTrials.svelte';
+	import { wikipedia, clinicalTrials } from '$lib/data/api.js'
 	import { toSlug } from '$lib/data/slug.js';
 	import { onMount } from 'svelte';
 	import Separator from '$lib/components/ui/separator/separator.svelte';
+	import ClincialTrials from '$lib/components/data/clinicalTrials.svelte';
 	
 	export let data;
 	const { disease, id } = data;
@@ -36,13 +38,19 @@
 			
 		}
 	}
-	getICD(disease.name)
+	// getICD(disease.name)
 
 	let info = '';
 	wikipedia(toSlug(disease.name)).then(data => {
 		info = data
 	})
+	
+	let clinicalTrialsInfo;
+	clinicalTrials(disease.name).then(data => {
+		clinicalTrialsInfo = data
+	})
 
+	
 	let orientation = 'horizontal';
 	const smBreakpoint = 640;
 
@@ -107,8 +115,13 @@
 				>
 				<Resizable.Handle />
 				<Resizable.Pane maxSize="50">
-					<div class="m-4">				
-						<InfoBox extract={info}/>
+					<div class="overflow-auto h-full scrollbar-hide">
+						<div class="m-4">				
+							<InfoBox extract={info}/>
+						</div>
+						<div class="m-4">				
+							<ClinicalTrials rep={clinicalTrialsInfo}/>
+						</div>
 					</div>
 				</Resizable.Pane>
 			</Resizable.PaneGroup>
@@ -142,6 +155,9 @@
 	</div>
 	<div class="m-4">
 		<Medication index={id} />
+	</div>
+	<div class="m-4">
+		<ClinicalTrials rep={clinicalTrialsInfo}/>
 	</div>
 {/if}
 
