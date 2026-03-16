@@ -27,7 +27,7 @@
 	export let data;
 	const { disease, id } = data;
 	
-
+	let icd
 	async function getICD(name) {
 		try {
 			const response = await fetch('https://clinicaltables.nlm.nih.gov/api/conditions/v3/search?terms=' + name + '&sf=consumer_name&ef=icd10cm_codes,icd10cm')
@@ -35,12 +35,13 @@
 				throw new Error
 			}
 			const result = await response.json()
-			console.log(result)
+			icd = result[2].icd10cm_codes[0]
+			return result
 		} catch (error) {
 			
 		}
 	}
-	// getICD(disease.name)
+	getICD(disease.name)
 
 	let info = '';
 	wikipedia(toSlug(disease.name)).then(data => {
@@ -91,7 +92,8 @@
 						</Breadcrumb.Item>
 						<Breadcrumb.Separator />
 						<Breadcrumb.Item>
-							<Breadcrumb.Page>{disease.name}</Breadcrumb.Page>
+						
+							<Breadcrumb.Page>{disease.name} - {icd}</Breadcrumb.Page>
 						</Breadcrumb.Item>
 					</Breadcrumb.List>
 				</Breadcrumb.Root>
@@ -149,7 +151,7 @@
 					</Breadcrumb.Item>
 					<Breadcrumb.Separator />
 					<Breadcrumb.Item>
-						<Breadcrumb.Page>{disease.name}</Breadcrumb.Page>
+						<Breadcrumb.Page>{disease.name} - {icd}</Breadcrumb.Page>
 					</Breadcrumb.Item>
 				</Breadcrumb.List>
 			</Breadcrumb.Root>
