@@ -1,7 +1,8 @@
 <script>
 	import { page } from '$app/stores';
-	import TrendingUpIcon from '@lucide/svelte/icons/trending-up';
 	import * as Chart from '$lib/components/ui/chart/index.js';
+	import Link from '@lucide/svelte/icons/link';
+	import TrendingUpIcon from '@lucide/svelte/icons/trending-up';
 	import * as Card from '$lib/components/ui/card/index.js';
 	import { BarChart } from 'layerchart';
 	import { scaleBand } from 'd3-scale';
@@ -17,6 +18,7 @@
 	import InfoBox from '$lib/components/data/infobox.svelte';
 	import ClinicalTrials from '$lib/components/data/clinicalTrials.svelte';
 	import { wikipedia, clinicalTrials } from '$lib/data/api.js'
+	import { Button } from "$lib/components/ui/button/index.js";
 	import { toSlug } from '$lib/data/slug.js';
 	import { onMount } from 'svelte';
 	import Separator from '$lib/components/ui/separator/separator.svelte';
@@ -66,6 +68,9 @@
 		window.removeEventListener('resize', updateOrientation);
 		};
 	});
+	function copyUrl() {
+		navigator.clipboard.writeText(window.location.href);
+	}
 </script>
 
 <svelte:head>
@@ -91,7 +96,13 @@
 					</Breadcrumb.List>
 				</Breadcrumb.Root>
 				<h1 class="font-[SourceSerif] text-center text-3xl flex-1">{disease.name}</h1>
-				<div class="flex-1"></div>
+				<div class="flex-1 flex justify-end">
+					<button on:click={copyUrl}>
+						<Button variant="outline" size="sm">
+							<Link/> Copy Link
+						</Button>
+					</button>
+				</div>
 			</div>
 		</Resizable.Pane>
 		<Resizable.Handle disabled />
@@ -129,19 +140,26 @@
 		<Footer/>
 	</Resizable.PaneGroup>
 {:else}
-	<div class="p-4">
-		<Breadcrumb.Root class="flex-1">
-			<Breadcrumb.List>
-				<Breadcrumb.Item>
-					<Breadcrumb.Link href="/">Search</Breadcrumb.Link>
-				</Breadcrumb.Item>
-				<Breadcrumb.Separator />
-				<Breadcrumb.Item>
-					<Breadcrumb.Page>{disease.name}</Breadcrumb.Page>
-				</Breadcrumb.Item>
-			</Breadcrumb.List>
-		</Breadcrumb.Root>
-		<h1 class="font-[SourceSerif] text-3xl">{disease.name}</h1>
+	<div class="p-4 flex justify-between items-center">
+		<div>
+			<Breadcrumb.Root class="flex-1">
+				<Breadcrumb.List>
+					<Breadcrumb.Item>
+						<Breadcrumb.Link href="/">Search</Breadcrumb.Link>
+					</Breadcrumb.Item>
+					<Breadcrumb.Separator />
+					<Breadcrumb.Item>
+						<Breadcrumb.Page>{disease.name}</Breadcrumb.Page>
+					</Breadcrumb.Item>
+				</Breadcrumb.List>
+			</Breadcrumb.Root>
+			<h1 class="font-[SourceSerif] text-3xl">{disease.name}</h1>
+		</div>
+		<button on:click={copyUrl}>
+			<Button variant="outline" size="sm">
+				<Link/> Copy Link
+			</Button>
+		</button>
 	</div>
 	<Separator></Separator>
 	<div class="m-4">				
