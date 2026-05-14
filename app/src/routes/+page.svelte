@@ -5,6 +5,7 @@
 	import Footer from '$lib/components/footer.svelte'
 	import FooterMobile from '$lib/components/footer_mobile.svelte'
 	import { toSlug } from '$lib/data/slug.js';
+	import { GrainGradient } from '@devmischief/shaders-svelte';
 
 	let query = '';
 	// Filter only for the disease searched, slice 10 for faster rendering
@@ -15,7 +16,45 @@
  	<meta name="description" content="Search 700+ diseases and explore their associated symptoms with frequency data.">
  	<meta name="author" content="Leander Guo" />
 </svelte:head>
-<main class="flex h-screen w-screen flex-col items-center justify-between bg-[#f5f5f5]">
+<GrainGradient
+  width={'100vw'}
+  height={'100vh'}
+  colors={['#3a86ff', '#06d6a0']}
+  colorBack="#ffffff"
+  shape="wave"
+  softness={1}
+  intensity={0.26}
+  noise={0}
+  scale={1.5}
+  rotation={0}
+  offsetX={0.09}
+  offsetY={0.36}
+  speed={1}
+  fit="contain"
+  style="position: fixed; top: 0; left: 0; z-index: -1;"
+/>
+
+<div class="w-screen h-screen flex flex-col items-center justify-center">
+	<div>
+		<h2 class="font-bold text-5xl">Medical Information <br> at Your Fingertips</h2>
+			<Command.Root class="sm:w-150 rounded-lg shadow-md backdrop-filter backdrop-blur-3xl bg-opacity-100 h-20">
+				<Command.Input placeholder="" bind:value={query}/>
+					<Command.Empty>No results found.</Command.Empty>
+					<Command.Group>
+						<div class="flex overflow-x-scroll">
+							{#each dataset as disease}
+								<Command.LinkItem class="text-nowrap" href={'/diseases/' + toSlug(disease.name)}>
+									{disease.name}
+								</Command.LinkItem>
+							{/each}
+						</div>
+					</Command.Group>
+			</Command.Root>
+	</div>
+</div>
+
+
+<!-- <main class="flex h-screen w-screen flex-col items-center justify-between bg-[#f5f5f5]">
 	<div></div>
 	<div class="flex flex-col items-center justify-center px-8">
 		<h1 class="mb-5 font-['SourceSerif'] text-4xl">Search for a disease.</h1>
@@ -23,11 +62,6 @@
 			<Command.Input placeholder="" bind:value={query}/>
 			<Command.List>
 				<Command.Empty>No results found.</Command.Empty>
-				<!-- <Command.Group heading="Last Searches">
-						<Command.LinkItem href={''}>
-							<a href={'/disease?id=' + disease.id}> {disease.name}</a>
-						</Command.LinkItem>
-				</Command.Group> -->
 				<Command.Group heading="Suggestions">
 					{#each dataset as disease}
 						<Command.LinkItem href={'/diseases/' + toSlug(disease.name)}>
@@ -41,4 +75,4 @@
 	<FooterMobile/>
 	<Footer></Footer>
 </main>
-
+ -->
