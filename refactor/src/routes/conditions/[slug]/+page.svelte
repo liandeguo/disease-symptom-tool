@@ -1,7 +1,8 @@
 <script>
     import { Plot, BarX, LinearGradientY, LinearGradientX, RuleX, setPlotDefaults } from 'svelteplot';
-    import index from '$lib/data/index.json'
-    console.log(index[100])
+	import { arrowPath } from 'svelteplot/helpers/arrowPath.js';
+    let { data } = $props();
+    console.log(data.condition)
     setPlotDefaults({
         height: 400,
         axis: {
@@ -20,29 +21,19 @@
         {type: 0, content: 'ICD-10 F32.3'}
     ]
 
-    let procedures = [
-        {content: 'Psychotherapy', linked: [100,101], id: 102}
-    ]
+    // let procedures = [
+    //     {content: 'Psychotherapy', linked: [100,101], id: 102}
+    // ]
 
     // let treatments = [
     //     {content: 'Alprazolam', linked: [100, 101], id:102}
     // ]
+    const procedures = data.condition.commonTestProcedures
+    const treatments = data.condition.commonMedication
 
-    let treatments = [
-      "Lorazepam",
-      "Alprazolam (Xanax)",
-      "Clonazepam",
-      "Paroxetine (Paxil)",
-      "Venlafaxine (Effexor)",
-      "Mirtazapine",
-      "Buspirone (Buspar)",
-      "Fluvoxamine (Luvox)",
-      "Imipramine",
-      "Desvenlafaxine (Pristiq)",
-      "Clomipramine",
-      "Acamprosate (Campral)",
-      "Disulfiram (Antabuse)"
-    ]
+    const symptomsName = data.condition.symptoms.map(item => item.symptom)
+    const symptomsPercentage = data.condition.symptoms.map(item => item.percentage)
+
 </script>
 <main class="flex">
     <!-- Main -->
@@ -54,15 +45,14 @@
                 </span>
             {/each}
         </div>
-        <h1>Myocardical Infarct</h1>
+        <h1>{data.condition.name}</h1>
         <h3 class="font-serif italic font-medium">Synonyms: Heart Infarct, MI</h3>
         <p style="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vehicula maximus lacus in vestibulum. Etiam commodo metus vel tristique sagittis. Nunc vitae velit sed risus tempor malesuada. Nullam urna nulla, vehicula quis odio vel, fringilla blandit tortor. Vestibulum commodo ligula quis auctor ullamcorper. Mauris nec lectus egestas, venenatis lectus quis, sodales ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam finibus tortor iaculis suscipit luctus. Praesent ultricies metus lobortis neque congue, a ultricies odio consequat. Donec nec dignissim turpis, ac semper dolor. Sed est erat, dapibus eu arcu eu, porttitor luctus lectus. In maximus, enim id fringilla fringilla, leo purus cursus massa, id pretium ex lectus vel turpis. Duis pulvinar hendrerit tempor. </p>
         <hr class="my-6">
         <div class="w-min rounded-b-xl">
             <h2>Symptoms</h2>
             <label for="symptomGraph">[01] Percentage of specific symptoms perceived by patients with the condition</label>
-            <Plot y={['Sharp chest pain', 'Shortness of beath', 'chest tightness', 'nausea', 'arm pain', 'fainting', 'sweating', 'heartburn', 'irregular heartbeat', 'increased heart rate'
-            ]} x={{ domain: [0, 100]}} >
+            <Plot y={symptomsName} x={{ domain: [0, 100]}} >
                 <defs>
                     <LinearGradientX
                         id="temp-gradient"
@@ -71,7 +61,7 @@
                             { x: 100, color: '#000000' }
                         ]} />
                     </defs>
-                <BarX data={[90, 80, 70, 60, 100, 40, 30, 20, 10, 5]} fill="url(#temp-gradient)"/>
+                <BarX data={symptomsPercentage} fill="url(#temp-gradient)"/>
             </Plot>
             
         </div>
