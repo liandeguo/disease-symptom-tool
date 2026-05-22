@@ -27,6 +27,8 @@
     const symptomsName = data.condition.symptoms.map(item => item.symptom)
     const symptomsPercentage = data.condition.symptoms.map(item => item.percentage)
 
+    const clinicalTrials = data.condition.clinicalTrials
+
 </script>
 <main class="flex">
     <!-- Main -->
@@ -58,33 +60,57 @@
             </Plot>
             
         </div>
+
         <hr class="my-6">
-    <div class="treatmentDiagnosis flex gap-8">
-        <!-- Procedures -->
-        <div class="procedures flex-1">
-            <h3 class="uppercase font-medium mb-2">Common tests & procedures</h3>
-            <div class="flex flex-wrap gap-1">
-                {#each procedures as procedure}
-                    <span class="badge">
-                        {procedure}
-                    </span>
-                {/each}
+
+        <div class="treatmentDiagnosis flex gap-8">
+            <!-- Procedures -->
+            <div class="procedures flex-1">
+                <h3 class="uppercase font-medium mb-2">Common tests & procedures</h3>
+                <div class="flex flex-wrap gap-1">
+                    {#each procedures as procedure}
+                        <span class="badge">
+                            {procedure}
+                        </span>
+                    {/each}
+                </div>
+            </div>
+
+            <!-- Treatments -->
+            <div class="treatments flex-1">
+                <h3 class="uppercase font-medium mb-2">Common treatments</h3>
+                <div class="flex flex-wrap gap-1">
+                    {#each treatments as treatment}
+                        <span class="badge">
+                            {treatment}
+                        </span>
+                    {/each}
+                </div>
             </div>
         </div>
 
-        <!-- Treatments -->
-        <div class="treatments flex-1">
-            <h3 class="uppercase font-medium mb-2">Common treatments</h3>
-            <div class="flex flex-wrap gap-1">
-                {#each treatments as treatment}
-                    <span class="badge">
-                        {treatment}
-                    </span>
-                {/each}
-            </div>
-        </div>
-    </div>
+        <hr class="my-6">
+        <div class="clinicalTrials">
+            <h3 class="uppercase font-medium mb-2">Clinical Trials</h3>
+            {#each clinicalTrials as trial}
+                <a href="https://clinicaltrials.gov/study/{trial.protocolSection.identificationModule.nctId}" target="_blank">
+                    <div class="clinicalTrial mb-3 relative">
+                        <span class="font-semibold">
+                            {trial.protocolSection.identificationModule.officialTitle}
+                        </span> <br>
+                        {trial.protocolSection.identificationModule.organization.fullName}
+                        <br>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="badge">{trial.protocolSection.statusModule.startDateStruct.date} - {trial.protocolSection.statusModule.primaryCompletionDateStruct.date}</span>           
+                            <span class="badge">{trial.protocolSection.designModule.enrollmentInfo.count} participants</span>
+                        </div>
 
+                    </div>
+                </a>
+            {/each}
+        </div>
+
+        
     </section>  
     <!-- Context -->
     <!-- <div class="contextMenu bg-white w-[340px] px-4 pt-8">

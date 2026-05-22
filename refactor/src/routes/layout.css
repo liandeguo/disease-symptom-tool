@@ -43,7 +43,7 @@ h2 {
 
 h3 {
     font-family: var(--font-serif);
-    font-size: var(--text-sm);
+    font-size: var(--text-lg);
 }
 body {
     @apply bg-[#F6F6F6];
@@ -71,4 +71,25 @@ label {
     @apply bg-[#DAD4D2] px-3 py-1  rounded-md border border-[#C7BEBA];
     font-size: var(--text-sm);
     font-family: var(--font-serif);
+}
+
+.clinicalTrial {
+    position: relative;
+    border-radius: 12px;
+}
+
+.clinicalTrial::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background: transparent;
+    z-index: -1;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.clinicalTrial:hover::before {
+    background: #EFEFEF;
+    transform: scaleX(1.03) scaleY(1.18);
+
 }
