@@ -1,0 +1,797 @@
+icd_10,name,id
+M65.3,Trigger finger (finger disorder),385
+I48.91,Arrhythmia,720
+I50.9,Peripheral arterial disease,569
+H16.9,Cornea infection,203
+H04.12,Dry eye of unknown cause,371
+I74.3,Peripheral arterial embolism,632
+E78.5,Hyperlipidemia,747
+N32.0,Bladder obstruction,586
+D89.2,Hypergammaglobulinemia,159
+B35.1,Onychomycosis,503
+S32.9,Fracture of the pelvis,745
+K57.90,Diverticulosis,325
+C64.9,Kidney cancer,642
+T19.2,Foreign body in the vagina,60
+J32.9,Chronic sinusitis,206
+G12.21,Amyotrophic lateral sclerosis (ALS),515
+D23.9,Skin polyp,660
+B37.9,Yeast infection,666
+J02.0,Strep throat,783
+M54.5,Lumbago,565
+S29.9,Injury to the trunk,262
+N94.8,Vulvodynia,268
+K44.9,Hiatal hernia,300
+Q90.9,Down syndrome,683
+H80.90,Otosclerosis,261
+L68.0,Hirsutism,322
+A07.0,Acariasis,756
+H40.9,Glaucoma,35
+F44.9,Conversion disorder,259
+G21.19,Extrapyramidal effect of drugs,301
+L90.9,Atrophic skin condition,392
+L83,Acanthosis nigricans,464
+K83.09,Ascending cholangitis,608
+M35.00,Sjogren syndrome,786
+R00.1,Sick sinus syndrome,33
+M31.9,Vasculitis,270
+O03,Spontaneous abortion,739
+M65.9,Tendinitis,513
+Q05,Spina bifida,667
+L28.0,Lichen simplex,754
+C18.9,Colorectal cancer,757
+G25.3,Myoclonus,243
+H66.001,Otitis media,351
+A54.9,Gonorrhea,150
+H43.81,Vitreous degeneration,391
+S71.001A,Open wound of the hip,85
+M54.3,Sciatica,315
+A92.30,West Nile virus,328
+K56.6,Intestinal obstruction,476
+I10,Malignant hypertension,670
+T78,Allergy,304
+E73.9,Lactose intolerance,694
+F78.0,Fetal alcohol syndrome,54
+H05.01,Orbital cellulitis,340
+L21.9,Seborrheic dermatitis,361
+G47.41,Narcolepsy,368
+C95.9,Leukemia,120
+C74.9,Adrenal cancer,124
+L22,Diaper rash,592
+M94.0,Tietze syndrome,256
+E03.9,Hypothyroidism,263
+I62.00,Subdural hemorrhage,49
+R58.9,Idiopathic nonmenstrual bleeding,75
+G43.909,Migraine,549
+K90.0,Celiac disease,645
+D14.1,Vocal cord polyp,106
+K11.9,Salivary gland disorder,28
+H81.0,Meniere disease,302
+C80.1,Metastatic cancer,384
+M51.30,Degenerative disc disease,321
+M26.9,Jaw disorder,638
+J43.9,Emphysema,62
+I25.10,Coronary atherosclerosis,71
+D61.9,Aplastic anemia,168
+I73.00,Raynaud disease,627
+R00.1,Sinus bradycardia,651
+F44.9,Dissociative disorder,698
+G25.81,Restless leg syndrome,61
+S06.0X9,Concussion,271
+R01.2,Premature ventricular contractions (PVCs),134
+M81.9,Osteoporosis,438
+N39.0,Cystitis,646
+K70.9,Alcoholic liver disease,669
+M87.9,Avascular necrosis,782
+B37.3,Vaginal yeast infection,79
+J82,Pulmonary eosinophilia,84
+F34.1,Dysthymic disorder,2
+D64.9,Anemia,512
+K59.1,Chronic constipation,655
+A58,Granuloma inguinale,769
+F42,Obsessive compulsive disorder (OCD),771
+K80.5,Choledocholithiasis,45
+M46.9,Spondylitis,72
+K21.9,Gastroesophageal reflux disease (GERD),284
+K31.84,Gastroparesis,187
+H01.009,Blepharitis,644
+L81.9,Skin pigmentation disorder,758
+M79.7,Chronic pain disorder,40
+S28.1,Crushing injury,95
+E63.9,Protein deficiency,242
+J18.9,Pneumonia,132
+H68.009,Eustachian tube dysfunction (ear disorder),695
+E53.9,Vitamin B deficiency,712
+G40.9,Epilepsy,778
+O20.0,Threatened pregnancy,356
+E11.22,Diabetic kidney disease,175
+K04.7,Tooth abscess,374
+B75,Trichinosis,395
+B26.9,Mumps,689
+S93.9,Injury of the ankle,772
+C41.9,Bone cancer,343
+K56.0,Ileus,439
+F45.0,Somatization disorder,613
+C71.9,Brain cancer,21
+G51.0,Bell palsy,121
+S63.0,Dislocation of the wrist,497
+S02.9,Fracture of the facial bones,636
+G89.29,Neuralgia,279
+H10.45,Conjunctivitis due to allergy,122
+B09,Viral exanthem,466
+N64.3,Galactorrhea of unknown cause,761
+D58.0,Spherocytosis,625
+J04.10,Tracheitis,637
+T88.7X5A,Drug poisoning due to medication,668
+M06.821,Lateral epicondylitis (tennis elbow),172
+R31.9,Temporary or benign blood in urine,500
+J91.8,Pleural effusion,709
+L30.9,Eczema,596
+S81.01,Open wound of the knee,19
+I18.11,Kidney disease due to longstanding hypertension,501
+T34.90XA,Frostbite,675
+D56.9,Thalassemia,704
+F12.10,Marijuana abuse,219
+H66.90,Chronic otitis media,305
+A59.9,Trichomonas infection,519
+L70.9,Acne,520
+E11.42,Diabetic peripheral neuropathy,550
+F29,Psychotic disorder,674
+D51.9,Vitamin B12 deficiency,266
+E23.7,Pituitary disorder,162
+A38.9,Scarlet fever,3
+E23.2,Diabetes insipidus,524
+L90.5,Scar,693
+A49.9,Male genitalia infection,749
+F50.9,Eating disorder,36
+M34.9,Scleroderma,288
+B60.1,Ingrown toe nail,83
+C71.5,Ependymoma,152
+S72.9,Fracture of the leg,420
+B88.9,Insect bite,456
+J00,Common cold,514
+F19.90,Drug abuse,522
+D35.0,Adrenal adenoma,663
+K74.6,Cirrhosis,47
+H52.0,Hyperopia,296
+N35.9,Urethral stricture,447
+K11.20,Sialoadenitis,713
+S01.90XA,Open wound of the head,736
+E89.0,Burn,738
+H61.20,Foreign body in the ear,338
+M62.82,Rhabdomyolysis,574
+F84.5,Asperger syndrome,597
+C15.9,Esophageal cancer,224
+M08.9,Juvenile rheumatoid arthritis,226
+W31.02,Open wound from surgical incision,359
+L43.0,Drug reaction,123
+J60,Pneumoconiosis,746
+B57.9,Chagas disease,345
+D63.0,Anemia due to malignancy,139
+E87.70,Fluid overload,413
+G30.9,Dementia,455
+M51.9,Herniated disk,573
+O09.9,Problem during pregnancy,41
+D45,Polycythemia vera,190
+T43.3X1A,Poisoning due to antipsychotics,726
+A82.9,Rabies,170
+F52.5,Vaginismus,404
+S43.006A,Dislocation of the shoulder,428
+G36.0,Neuromyelitis optica,254
+I61.9,Intracerebral hemorrhage,402
+S83.106A,Dislocation of the knee,409
+Z91.82,Allergy to animals,423
+J05.0,Croup,493
+W01.10XA,Infection of open wound,240
+R25.2,Muscle spasm,183
+J39.1,Abscess of the pharynx,431
+I74.3,Moyamoya disease,672
+O09.90,Pregnancy,703
+L51.9,Erythema multiforme,717
+B08.1,Molluscum contagiosum,583
+B55.9,Leishmaniasis,344
+C87.2,Venous insufficiency,518
+I03.91,Perirectal infection,639
+K20.9,Esophagitis,664
+H15.0,Scleritis,333
+F10.239,Alcohol withdrawal,13
+S02.9,Fracture of the jaw,532
+Q87.40,Marfan syndrome,557
+F88,Developmental disability,560
+E87.5,Hyperkalemia,202
+A90,Dengue fever,205
+K64.9,Hemorrhoids,649
+M35.2,Behcet disease,727
+S01.20XA,Open wound of the nose,606
+J91.8,Empyema,231
+H11.009,Pterygium,334
+T79.1,Fat embolism,189
+G25.0,Essential tremor,679
+H30.9,Chorioretinitis,275
+Q66.01,Dislocation of the patella,314
+S51.9,Open wound of the arm,197
+O45.9,Placental abruption,22
+G24.5,Blepharospasm,382
+N91.3,Idiopathic infrequent menstruation,684
+G91.9,Hydrocephalus,137
+I10,High blood pressure,652
+B27.9,Mononucleosis,278
+H40.9,Chronic glaucoma,166
+N18.8,Primary kidney disease,369
+I40.9,Varicocele of the testicles,526
+F68.1,Factitious disorder,759
+K55.9,Ischemia of the bowel,53
+N81.9,Pelvic organ prolapse,102
+R68.0,Hypothermia,547
+L73.2,Hidradenitis suppurativa,553
+M71.9,Bursitis,223
+E07.9,Thyroid disease,127
+J30.9,Seasonal allergies (hay fever),23
+C53.9,Cervical cancer,662
+F17.200,Smoking or tobacco addiction,677
+D13.30,Zenker diverticulum,744
+G89.12,Pain after an operation,326
+H17.1,Foreign body in the nose,681
+C44,Skin cancer,791
+D52.9,Intestinal malabsorption,89
+I13.2,Heart block,247
+K60.0,Anal fissure,303
+F15.20,Drug abuse (methamphetamine),362
+C62.9,Testicular cancer,136
+I20.0,Ischemic heart disease,488
+K85,Acute pancreatitis,57
+G06.0,Intracranial abscess,357
+Z91.018,Food allergy,113
+G45.0,Vertebrobasilar insufficiency,378
+E87.6,Hypokalemia,426
+T15.9,Foreign body in the eye,460
+N85.00,Endometrial hyperplasia,463
+G93.6,Cerebral edema,730
+H50.9,Eye alignment disorder,25
+H35.03,Retinopathy due to high blood pressure,78
+G61.81,Chronic inflammatory demyelinating polyneuropathy (CIDP),283
+N39.9,Urethral disorder,504
+C90.0,Scurvy,367
+A57.0,Chancroid,135
+H53.3,Floaters,416
+C16.9,Stomach cancer,559
+A27.9,Leptospirosis,375
+D80.9,Primary immunodeficiency,471
+F43.10,Post-traumatic stress disorder (PTSD),641
+M45.9,Ankylosing spondylitis,723
+A00.9,Teething syndrome,65
+D35.2,Pituitary adenoma,73
+K72.90,Hepatic encephalopathy,342
+G20,Parkinson disease,349
+K59.1,Noninfectious gastroenteritis,468
+S73.00,Dislocation of the hip,474
+C85.90,Lymphoma,329
+B35.9,Fungal infection of the skin,335
+N34.2,Urethritis,441
+B38.9,Valley fever,554
+H93.A0,Tinnitus of unknown cause,34
+H44.001,Endophthalmitis,88
+M25.40,Joint effusion,18
+G47.33,Obstructive sleep apnea (OSA),425
+I61.1,Epidural hemorrhage,706
+M47.9,Spondylosis,236
+N91.2,Idiopathic absence of menstruation,291
+E22.2,Syndrome of inappropriate secretion of ADH (SIADH),337
+B20.9,Tuberculosis,451
+F32.9,Depression,521
+S63.2,Dislocation of the finger,731
+R58.8,Hematoma,734
+S01.501,Open wound of the lip,398
+F43.20,Adjustment reaction,741
+G91.2,Normal pressure hydrocephalus,96
+T43.201A,Poisoning due to antidepressants,239
+O01.9,Hydatidiform mole,449
+T67.0,Heat stroke,619
+O91.9,Breast infection (mastitis),575
+E83.01,Wilson disease,147
+B88.0,Cat scratch disease,165
+M43.10,Spondylolisthesis,603
+D66,Hemophilia,184
+B30.9,Conjunctivitis due to virus,605
+I71.1,Thoracic aortic aneurysm,48
+F63.3,Alopecia,97
+H91.1,Presbyacusis,232
+N80.9,Endometriosis,269
+F10.129,Alcohol intoxication,366
+H66.001,Otitis externa (swimmer's ear),443
+F19.99,Substance-related mental disorder,69
+I83.9,Varicose veins,318
+B20,Human immunodeficiency virus infection (HIV),688
+P15.9,Birth trauma,732
+L57.0,Actinic keratosis,227
+S01.502A,Open wound of the mouth,287
+I91.8,Lymphedema,309
+M79.7,Fibromyalgia,52
+I09.9,Chronic rheumatic fever,129
+E28.2,Polycystic ovarian syndrome (PCOS),6
+B37.3,Female genitalia infection,535
+N92.6,Idiopathic irregular menstrual cycle,609
+J84.1,Interstitial lung disease,610
+D25.9,Uterine fibroids,74
+G56.01,Carpal tunnel syndrome,161
+F13.23,Drug withdrawal,177
+S83.2,Knee ligament or meniscus tear,616
+B35.3,Athlete's foot,708
+S61.9,Open wound of the hand,766
+K71.9,Hepatitis due to a toxin,153
+E34.0,Carcinoid syndrome,735
+P32.0,Vesicoureteral reflux,148
+Q43.0,Meckel diverticulum,496
+T36-T50.9X5,Neuropathy due to drugs,492
+M79.2,Nerve impingement near the shoulder,763
+I85.0,Thrombophlebitis,58
+E85.9,Amyloidosis,282
+Q85.8,Hirschsprung disease,307
+O00.9,Ectopic pregnancy,156
+H72.90,Ear drum damage,498
+O04.9,Induced abortion,64
+J85.1,Abscess of the lung,204
+F90.9,Attention deficit hyperactivity disorder (ADHD),253
+D46.9,Myelodysplastic syndrome,353
+G35,Multiple sclerosis,743
+F63.9,Impulse control disorder,116
+E83.51,Hypocalcemia,130
+I43.90,Esophageal varices,140
+N19,Kidney failure,181
+C00-C14,Head and neck cancer,192
+S13.101A,Dislocation of the vertebra,700
+A77.0,Rocky Mountain spotted fever,796
+M54.5,Chronic back pain,570
+H52.4,Presbyopia,454
+G03.9,Meningitis,624
+K37,Appendicitis,696
+F43.0,Acute stress reaction,561
+T38.3X1A,Insulin overdose,336
+K07.6,Temporomandibular joint disorder,146
+H46.9,Optic neuritis,12
+B35.0,Fungal infection of the hair,373
+F20.9,Schizophrenia,615
+H00.19,Chalazion,76
+H90.2,Conductive hearing loss,216
+G80.9,Cerebral palsy,218
+I57.8,Pulmonic valve disease,255
+E05.1,Toxic multinodular goiter,508
+S93.40,Sprain or strain,678
+E87.1,Hyponatremia,773
+A09,Infectious gastroenteritis,66
+I20.9,Deep vein thrombosis (DVT),241
+G95.0,Syringomyelia,346
+B50.9,Malaria,612
+M89.9,Bone disorder,777
+B45.9,Cryptococcosis,220
+E20.1,Pseudohypoparathyroidism,193
+C51.9,Vulvar cancer,643
+S53.1,Dislocation of the elbow,235
+D63.1,Anemia due to chronic kidney disease,331
+J02.9,Pharyngitis,128
+H33.0,Retinal detachment,167
+L89.9,Chronic ulcer,437
+E55.9,Vitamin D deficiency,448
+C73,Thyroid cancer,656
+C18.9,Intestinal cancer,795
+J01.90,Acute sinusitis,67
+C56.9,Ovarian cancer,472
+J36,Peritonsillar abscess,186
+S00.90XA,Injury to the face,541
+Q91.7,Patau syndrome,568
+T52.8X1A,Poisoning due to ethylene glycol,109
+A41.02,Omphalitis,119
+J09.X9,Flu,657
+H27.0,Aphakia,710
+N76.0,Vaginitis,32
+E88.81,Nonalcoholic liver disease (NASH),100
+N89.8,Vaginal cyst,154
+M20.4,Hammer toe,16
+H70.9,Mastoiditis,80
+G71.0,Muscular dystrophy,198
+S02.9,Fracture of the skull,634
+T39.9X1A,Poisoning due to analgesics,210
+Q91.3,Edward syndrome,196
+G54.0,Thoracic outlet syndrome,407
+H34.1,Central retinal artery or vein occlusion,516
+G64.9,Peripheral nerve disorder,724
+B97.7,HPV,750
+Q35.9,Congenital rubella,50
+S40.9,Injury to the arm,258
+H52.1,Myopia,125
+NF1,Neurofibromatosis,489
+I10.9,Cardiomyopathy,622
+B69.9,Cysticercosis,63
+D64.9,Magnesium deficiency,250
+L40.9,Psoriasis,427
+K45.8,Abdominal hernia,217
+K92.2,Gastrointestinal hemorrhage,360
+H02.101,Ectropion,692
+I92.0,Atrial flutter,414
+S80.9,Injury to the knee,30
+I42.9,Cardiac arrest,621
+J04.0,Laryngitis,589
+T81.4,Postoperative infection,411
+M35.9,Connective tissue disorder,459
+O14.9,Preeclampsia,487
+C73,Thyroid nodule,537
+H20.9,Uveitis,635
+I78.02,Pulmonary embolism,577
+G52.9,Cranial nerve palsy,257
+D16.9,Osteochondroma,388
+F10.26,Wernicke Korsakoff syndrome,481
+B90.9,Histoplasmosis,716
+C61,Prostate cancer,729
+B10.09,Genital herpes,740
+L84,Callus,563
+T18.9,Foreign body in the gastrointestinal tract,87
+S52.9,Fracture of the arm,103
+Z12.89,Urethral valves,213
+F42.3,Achalasia,215
+C67.9,Bladder cancer,310
+B00.1,Cold sore,133
+F84.0,Autism,164
+H90.3,Sensorineural hearing loss,436
+I89.1,Lymphangitis,480
+D23.9,Seborrheic keratosis,737
+T42.4X1A,Poisoning due to sedatives,297
+B25.9,Cytomegalovirus infection,533
+M41.9,Scoliosis,718
+M72.2,Plantar fasciitis,295
+Q61.3,Polycystic kidney disease,280
+M31.5,Polymyalgia rheumatica,308
+S01.401,Open wound of the cheek,17
+C62,Testicular disorder,551
+C90.0,Multiple myeloma,558
+H71.90,Cholesteatoma,207
+D35.1,Parathyroid adenoma,144
+N94.0,Mittelschmerz,199
+H18.001,Corneal abrasion,200
+T17.2,Foreign body in the throat,10
+R11.2,Persistent vomiting of unknown cause,484
+I08.0,Aortic valve disease,542
+B86,Scabies,629
+C22.9,Liver cancer,42
+K65.9,Peritonitis,55
+J44.9,Chronic obstructive pulmonary disease (COPD),234
+J84.1,Pulmonary fibrosis,347
+K05.9,Gum disease,358
+B08.5,Herpangina,237
+N31.2,Atonic bladder,380
+B90.9,Aspergillosis,393
+N13.9,Urinary tract obstruction,523
+K58.9,Irritable bowel syndrome,527
+I81.9,Endocarditis,617
+M25.00,Hemarthrosis,101
+M43.6,Torticollis,363
+S05.0,Open wound of the eye,173
+O13,Hypertension of pregnancy,631
+D55.0,G6PD enzyme deficiency,762
+S21.9,Open wound of the chest,313
+H11.15,Pinguecula,158
+O21.0,Hyperemesis gravidarum,702
+S69.9,Injury to the hand,44
+G58.9,Mononeuritis,611
+F48.9,Neurosis,728
+D63.8,Anemia of chronic disease,1
+I21.9,Heart attack,418
+A74.9,Chlamydia,530
+M65.4,De Quervain disease,686
+I48.91,Atrial fibrillation,211
+L89,Decubitus ulcer,434
+F52.9,Psychosexual disorder,511
+H20.0,Iridocyclitis,525
+G97.1,Headache after lumbar puncture,26
+F53.0,Postpartum depression,70
+F51.01,Primary insomnia,264
+N39.3,Stress incontinence,317
+J34.0,Abscess of nose,118
+Q24.9,Congenital heart defect,458
+O26.613,Acute fatty liver of pregnancy (AFLP),691
+A48.0,Necrotizing fasciitis,584
+D72.8,White blood cell disease,601
+R39.490,Overflow incontinence,169
+I13.10,Hypertensive heart disease,4
+K00.9,Tooth disorder,417
+N73.9,Pelvic inflammatory disease,653
+S31.00XA,Open wound of the back,246
+T46.4X1A,Poisoning due to antihypertensives,364
+K50.9,Crohn disease,410
+N10,Pyelonephritis,38
+H02.051,Trichiasis,755
+A55,Lymphogranuloma venereum,760
+Q67.4,Deviated nasal septum,566
+E78.0,Hypercholesterolemia,179
+O24.4,Gestational diabetes,552
+S12.9,Fracture of the vertebra,687
+S12.9,Fracture of the neck,182
+H53.001,Amblyopia,495
+L25.9,Contact dermatitis,650
+A63.9,Lice,265
+L08.0,Pyogenic skin infection,462
+C25.9,Pancreatic cancer,491
+I71,Rheumatic fever,792
+S79.9,Injury to the leg,341
+L98.9,Skin disorder,415
+L71.9,Rosacea,633
+I50.9,Heart failure,571
+N89.8,Benign vaginal discharge (leukorrhea),585
+K30,Indigestion,222
+J93.9,Pneumothorax,685
+N39.0,Urinary tract infection,715
+B80,Pinworm infection,212
+M60.9,Myositis,277
+D48.1,Ganglion cyst,408
+A69.20,Lyme disease,505
+Z13.5,Metabolic disorder,31
+S60.9,Injury to the finger,209
+B40.9,Blastomycosis,467
+G90.9,Autonomic nervous system disorder,510
+L01.00,Impetigo,545
+S93.0,Dislocation of the ankle,292
+D48.6,Peyronie disease,299
+F13.90,Drug abuse (barbiturates),5
+J80,Acute respiratory distress syndrome (ARDS),507
+K51.9,Ulcerative colitis,748
+I13.9,Mitral valve disease,348
+D69.6,Thrombocytopenia,191
+H10.9,Conjunctivitis due to bacteria,555
+N45.1,Epididymitis,581
+L03.0,Paronychia,599
+Q85.8,Von Hippel-Lindau disease,68
+K56.2,Volvulus,208
+G70.0,Myasthenia gravis,289
+I48.91,Paroxysmal supraventricular tachycardia,517
+N83.20,Ovarian cyst,529
+M86,Osteomyelitis,785
+J35.1,Tonsillar hypertrophy,789
+L05.9,Pilonidal cyst,94
+I91.01,Paroxysmal ventricular tachycardia,457
+S42.9,Fracture of the shoulder,354
+S41.00XA,Open wound of the shoulder,155
+K91.1,Dumping syndrome,539
+N20.9,Kidney stone,163
+E86.0,Hypernatremia,435
+O44.1,Placenta previa,705
+S46.9,Injury to the shoulder,238
+D86.9,Sarcoidosis,383
+H11.30,Subconjunctival hemorrhage,648
+S01.31,Open wound of the ear,680
+G89.29,Tension headache,365
+K02.9,Dental caries,178
+M05.9,Rheumatoid arthritis,543
+B02,Shingles (herpes zoster),780
+F05,Delirium,562
+A01.00,Typhoid fever,390
+I21.0,Tricuspid valve disease,446
+M25.41,Adhesive capsulitis of the shoulder,787
+N94.3,Premenstrual tension syndrome,339
+N95.9,Menopause,470
+K60.3,Anal fistula,546
+F41.0,Panic disorder,105
+H18.9,Corneal disorder,86
+D00.0,Oral leukoplakia,272
+M02.9,Reactive arthritis,628
+G50.0,Trigeminal neuralgia,722
+K22.2,Stricture of the esophagus,774
+T58.01XA,Carbon monoxide poisoning,293
+I76.1,Hemiplegia,15
+S61.209,Open wound of the finger,509
+A99,Hemorrhagic fever,770
+M21.4,Flat feet,99
+G47.8,Priapism,276
+E16.2,Hypoglycemia,290
+C83.39,Hemochromatosis,387
+S26.90,Heart contusion,477
+A59.9,Aphthous ulcer,793
+M93.9,Osteochondrosis,29
+O83.5,Ovarian torsion,77
+N43.3,Hydrocele of the testicle,320
+Q85.1,Tuberous sclerosis,230
+F91.9,Conduct disorder,578
+Q96.9,Turner syndrome,107
+H52.201,Astigmatism,229
+F91.3,Oppositional disorder,548
+K62.9,Rectal disorder,379
+K81.9,Cholecystitis,620
+K12.2,Cellulitis or abscess of mouth,112
+Q40.0,Pyloric stenosis,27
+S82.00,Fracture of the patella,180
+R06.02,Subacute thyroiditis,399
+M10.9,Gout,350
+T63.3X1A,Envenomation from spider or animal bite,376
+S79.9,Injury to the hip,46
+H40.20,Acute glaucoma,312
+L57.8,Dermatitis due to sun exposure,330
+C43,Melanoma,587
+K12.3,Mucositis,598
+Q54.9,Hypospadias,249
+D24.9,Fibroadenoma,765
+E10.10,Diabetic ketoacidosis,768
+K29.9,Gastritis,790
+H43.1,Vitreous hemorrhage,285
+N28.1,Benign kidney cyst,319
+T56.0A1,Lead poisoning,90
+H35.30,Macular degeneration,131
+M25.561,Chronic knee pain,157
+A37.9,Whooping cough,396
+D86.89,Paget disease,721
+D14.0,Nasal polyp,753
+I25.02,Abdominal aortic aneurysm,576
+G93.2,Pseudotumor cerebri,604
+D12.6,Colonic polyp,248
+S82.899A,Fracture of the ankle,775
+N95.2,Atrophic vaginitis,110
+R39.9,Bladder disorder,274
+M32.9,Systemic lupus erythematosis (SLE),405
+H61.20,Ear wax impaction,630
+E86.9,Hypovolemia,614
+N18.9,Chronic kidney disease,273
+T42.3X1A,Poisoning due to anticonvulsants,444
+I70.90,Central atherosclerosis,465
+F16.90,Von Willebrand disease,245
+D47.3,Primary thrombocythemia,432
+E06.3,Hashimoto thyroiditis,98
+N60.9,Fibrocystic breast disease,372
+E28.3,Premature ovarian failure,406
+N40.0,Benign prostatic hyperplasia (BPH),469
+N94.4,Idiopathic painful menstruation,682
+S22.3,Fracture of the rib,151
+D59.9,Hemolytic anemia,171
+M21.61,Bunion,719
+I10,Angina,751
+K31.9,Gastroduodenal ulcer,594
+E11.3,Diabetic retinopathy,51
+M92.8,Bone spur of the calcaneous,244
+D00.0,Oral mucosal lesion,400
+N82.9,Pelvic fistula,452
+S42.201A,Sporotrichosis,479
+I10,Myocarditis,486
+M94.2X9,Chondromalacia of the patella,502
+E34.9,Hormone disorder,626
+B58.9,Toxoplasmosis,764
+S27.321,Lung contusion,81
+T36.9X1A,Poisoning due to antimicrobial drugs,286
+J20.9,Acute bronchospasm,311
+F41.1,Anxiety,115
+C54.1,Endometrial cancer,141
+D18.00,Hemangioma,567
+S62.9,Fracture of the hand,111
+J81.1,Pulmonary congestion,225
+H66.001,Acute otitis media,228
+S14.109S,Injury to the spinal cord,752
+C49.9,Soft tissue sarcoma,776
+P59.9,Neonatal jaundice,233
+L30.4,Intertrigo (skin condition),143
+A51.9,Syphilis,174
+S31.1,Open wound of the abdomen,419
+B19.9,Viral hepatitis,788
+R23.8,Itching of unknown cause,188
+E04.9,Goiter,194
+G04.9,Encephalitis,7
+D32.9,Meningioma,20
+B01.9,Chickenpox,490
+D50.9,Iron deficiency anemia,506
+K76.9,Liver disease,654
+F95.2,Tourette syndrome,781
+N17.9,Acute kidney injury,355
+N39.41,Urge incontinence,195
+C54.9,Uterine cancer,370
+J03.9,Tonsillitis,794
+O42.9,Premature rupture of amniotic membrane,582
+K40.9,Inguinal hernia,595
+R61.9,Hyperhidrosis,92
+S01.40XA,Open wound of the jaw,600
+E11.10,Hyperosmotic hyperketotic state,185
+I71.0,Orthostatic hypotension,424
+N72,Cervicitis,430
+D57.00,Sickle cell crisis,440
+N92.0,Idiopathic excessive menstruation,494
+B89,Parasitic disease,531
+G10,Huntington disease,327
+H26.9,Cataract,473
+S01.90XA,Open wound of the face,699
+F98.8,Dyshidrosis,590
+H04.559,Stenosis of the tear duct,117
+B37.42,Balanitis,9
+M19.05,Arthritis of the hip,433
+Q86,Congenital malformation syndrome,478
+D17.9,Lipoma,534
+D68.9,Coagulation (bleeding) disorder,104
+S46.0,Rotator cuff injury,39
+I30.9,Pericarditis,252
+E27.3,Glucocorticoid deficiency,145
+M48.02,Spinal stenosis,475
+F52.21,Erectile dysfunction,499
+T67.5,Heat exhaustion,673
+F60.9,Personality disorder,779
+K56.1,Intussusception,429
+F40.10,Social phobia,623
+M54.13,Brachial neuritis,661
+N90.9,Vulvar disorder,711
+K08.1,Broken tooth,538
+E66.9,Obesity,221
+S93.3,Dislocation of the foot,323
+S39.9,Injury to the abdomen,56
+B07.9,Viral warts,91
+C46.9,Kaposi sarcoma,602
+I30.1,Hypertrophic obstructive cardiomyopathy (HOCM),82
+J34.9,Nose disorder,176
+L72.3,Sebaceous cyst,725
+H10.9,Conjunctivitis,572
+S09.90,Head injury,607
+L90.8,Atrophy of the corpus cavernosum,676
+C34.9,Lung cancer,24
+G30.9,Alzheimer disease,403
+G31.83,Lewy body dementia,556
+K86.1,Chronic pancreatitis,733
+E50.9,Vitamin A deficiency,149
+N60.0,Breast cyst,640
+F41.0,Panic attack,294
+H01.001,Stye,386
+D52.9,Folate deficiency,412
+I27.9,Pulmonary hypertension,536
+L04.9,Lymphadenitis,540
+F11.90,Drug abuse (opioids),352
+F14.10,Drug abuse (cocaine),11
+H81.1,Benign paroxysmal positional vertical (BPPV),381
+F10.10,Alcohol abuse,160
+M54.2,Pain disorder affecting the neck,450
+I30.9,Subarachnoid hemorrhage,690
+N63.1,Gynecomastia,714
+G11.4,Spinocerebellar ataxia,784
+N97.9,Female infertility of unknown cause,251
+F31.9,Bipolar disorder,281
+K80.9,Gallstone,742
+E83.52,Hypercalcemia,316
+J98.11,Atelectasis,43
+H81.0,Labyrinthitis,114
+R21.9,Pityriasis rosea,422
+I63.9,Stroke,93
+S62.6,Fracture of the finger,306
+K63.9,Intestinal disease,482
+N43.40,Spermatocele,544
+A48.0,Gas gangrene,665
+O62.2,Uterine atony,394
+S01.90XA,Open wound due to trauma,401
+Q53.9,Cryptorchidism,108
+E24.9,Cushing syndrome,389
+T59.9X1A,Poisoning due to gas,461
+S91.3,Open wound of the foot,485
+G61.0,Guillain Barre syndrome,564
+Z90.1,Mastectomy,580
+G31.01,Pick disease,397
+H02.409,Cyst of the eyelid,8
+B37.0,Oral thrush (yeast infection),421
+F95.9,Tic (movement) disorder,659
+K57.92,Diverticulitis,671
+O02.1,Missed abortion,767
+J21.9,Acute bronchiolitis,453
+M00.9,Septic arthritis,707
+E11.9,Diabetes,267
+N13.30,Hydronephrosis,324
+J20.9,Acute bronchitis,483
+D57.1,Sickle cell anemia,647
+E05.00,Graves disease,697
+T40.2X1A,Poisoning due to opioids,591
+G45.9,Transient ischemic attack,37
+C80.1,Pemphigus,298
+Q87.2,VACTERL syndrome,377
+S37.02,Testicular torsion,445
+S92.9,Fracture of the foot,528
+A41.9,Sepsis,618
+M54.2,Cervical disorder,588
+L43.9,Lichen planus,593
+J45.9,Asthma,59
+G89.4,Complex regional pain syndrome,260
+C50.9,Breast cancer,138
+E84.9,Cystic Fibrosis,142
+N41.9,Prostatitis,442
+F63.9,Friedrich ataxia,658
+Z12.89,Phimosis,701
+I88.0,Air embolism,579
+I04.9,Intracranial hemorrhage,201
+S11.9,Open wound of the neck,214
+S36.9,Injury to internal organ,332
+M19.90,Osteoarthritis,126
+I21.19,Premature atrial contractions (PACs),14
