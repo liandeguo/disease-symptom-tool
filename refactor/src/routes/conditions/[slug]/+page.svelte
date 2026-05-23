@@ -1,6 +1,8 @@
 <script>
+	import X from '@lucide/svelte/icons/x';
     import { Plot, BarX, LinearGradientY, LinearGradientX, RuleX, setPlotDefaults } from 'svelteplot';
 	import { arrowPath } from 'svelteplot/helpers/arrowPath.js';
+    import { onMount } from 'svelte';
     let { data } = $props();
     console.log(data)
     setPlotDefaults({
@@ -9,6 +11,19 @@
             tickSize: 0,
             tickPadding: 5
         }
+    });
+
+    onMount(async () => {
+        const mod = await import('svelteplot');
+
+
+        setPlotDefaults({
+            height: 400,
+            axis: {
+                tickSize: 0,
+                tickPadding: 5
+            }
+        });
     });
     
     let contexts = [
@@ -29,6 +44,7 @@
 
     const clinicalTrials = data.condition.clinicalTrials
 
+    const icd10Structure = data.condition.icdStructure
 </script>
 <main class="flex">
     <!-- Main -->
@@ -110,17 +126,23 @@
             {/each}
         </div>
 
-        
     </section>  
     <!-- Context -->
-    <!-- <div class="contextMenu bg-white w-[340px] px-4 pt-8">
+    <div class="contextMenu bg-white w-[340px] px-4 pt-8">
+    {#each icd10Structure as icd}
+        {#if icd[0] == data.condition.icd_10}
+            <p class="text-red-300">{icd[0]} - {icd[1]}</p>
+        {:else}
+            <p>{icd[0]} - {icd[1]}</p>
+        {/if}
+    {/each}
         {#each contexts as context}
             <div class="bg-gray-100 rounded-lg px-3 py-3">
                 <h3>{context.title}</h3>
                 <p>{context.content}</p>
             </div>
         {/each}
-    </div> -->
+    </div>
 </main>
 
 
