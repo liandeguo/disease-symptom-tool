@@ -85,7 +85,7 @@
     import { Command } from "bits-ui";
 
     let query = $state('')
-    let results = $state<{ name: string }[]>([]);
+    let results = $state<{ name: string, icd_10: string }[]>([]);
     let loading = $state()
 
     async function search() {
@@ -108,39 +108,42 @@
     }
 </script>
 <main class="flex flex-col items-center justify-center w-screen h-screen">
-    <nav><h1>Symptom Explorer</h1></nav>
+    <nav><h1 class="mb-3">Symptom Explorer</h1></nav>
     {console.log(results)}
-    <div>
+    <div class="w-120">
         <Command.Root onStateChange={() => search()} shouldFilter={false}
         class="divide-border border-muted bg-background flex h-full w-full flex-col divide-y self-start overflow-hidden rounded-xl border"
         >
         <Command.Input
-            class="focus-override h-input placeholder:text-foreground-alt/50 bg-background focus:outline-hidden inline-flex truncate rounded-tl-xl rounded-tr-xl px-4 text-sm transition-colors focus:ring-0"
-            placeholder="Search for something..." bind:value={query} 
+            class="focus-override h-input placeholder:text-foreground-alt/50 bg-background focus:outline-hidden inline-flex truncate rounded-tl-xl rounded-tr-xl px-4 py-4 text-sm transition-colors focus:ring-0"
+            placeholder="Search for a condition using it's name or ICD-10-CM" bind:value={query} 
         />
-        <Command.List
-            class="max-h-[280px] overflow-y-auto overflow-x-hidden px-2 pb-2"
-        >
-            <Command.Viewport>
-            <Command.Empty
-                class="text-muted-foreground flex w-full items-center justify-center pb-6 pt-8 text-sm"
-            >
-                No results found.
-            </Command.Empty>
-            <Command.Group>
-                <Command.GroupItems>
-                    {#each results as result}
-                        <a href="/conditions/{result.name}">
-                            <Command.Item>
-                                {result.name}
-                            </Command.Item>
-                        </a>
-                    {/each}
+            {#if query.trim().length > 2}
+                    <Command.List
+                        class="overflow-y-auto overflow-x-hidden px-2 pb-2"
+                    >
+                        <Command.Viewport>
+                        <Command.Empty
+                            class="text-muted-foreground flex w-full items-center justify-center pb-6 pt-8 text-sm"
+                        >
+                            No results found.
+                        </Command.Empty>
+                        <Command.Group>
+                            <Command.GroupItems>
+                                {#each results as result}
+                                    <a href="/conditions/{result.name}">
+                                        <Command.Item class="searchItem flex items-center py-1">
+                                            {result.name}
+                                            <span class="badge bg-black">{result.icd_10}</span>
+                                        </Command.Item>
+                                    </a>
+                                {/each}
 
-                </Command.GroupItems>
-            </Command.Group>
-            </Command.Viewport>
-        </Command.List>
+                            </Command.GroupItems>
+                        </Command.Group>
+                        </Command.Viewport>
+                    </Command.List>    
+            {/if}
         </Command.Root>
 
     </div>

@@ -46,7 +46,7 @@ h3 {
     font-size: var(--text-lg);
 }
 body {
-    @apply bg-[#F6F6F6];
+    @apply bg-[#ffffff];
     color: var(--color-text-primary);
 }
 
@@ -92,4 +92,8 @@ label {
     background: #EFEFEF;
     transform: scaleX(1.03) scaleY(1.18);
 
+}
+
+.searchItem .badge{
+    @apply bg-black border-0 text-white rounded-full ml-2;
 }

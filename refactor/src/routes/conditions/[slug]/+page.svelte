@@ -128,7 +128,8 @@
 
     </section>  
     <!-- Context -->
-    <div class="contextMenu bg-white w-[340px] px-4 pt-8">
+    <div class="w-[340px] h-screen px-8 py-8"></div>
+    <div class="contextMenu bg-[#f9f9f9] w-[340px] h-screen px-8 pt-8 border-l border-[#e7e9e8] fixed right-0">
     {#each icd10Structure as icd}
         {#if icd[0] == data.condition.icd_10}
             <p class="text-red-300">{icd[0]} - {icd[1]}</p>
