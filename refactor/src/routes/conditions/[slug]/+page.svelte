@@ -1,8 +1,18 @@
 <script>
-	import X from '@lucide/svelte/icons/x';
-    import { Plot, BarX, LinearGradientY, LinearGradientX, RuleX, setPlotDefaults } from 'svelteplot';
+
+    
+    // Graph
+    import { Plot, BarX, LinearGradientY, LinearGradientX, RuleX, setPlotDefaults, HTMLTooltip } from 'svelteplot';
 	import { arrowPath } from 'svelteplot/helpers/arrowPath.js';
     import { onMount } from 'svelte';
+
+    // import { Tooltip } from "bits-ui";
+    import Tooltip from '$lib/components/tooltip.svelte'
+
+    // Icons
+    import Search from '@lucide/svelte/icons/search';
+	import X from '@lucide/svelte/icons/x';
+    
     let { data } = $props();
     console.log(data)
     setPlotDefaults({
@@ -15,8 +25,6 @@
 
     onMount(async () => {
         const mod = await import('svelteplot');
-
-
         setPlotDefaults({
             height: 400,
             axis: {
@@ -27,9 +35,7 @@
     });
     
     let contexts = [
-        {title: 'ICD-10', content: 'F32.3'},
-        {title: 'Prevelance', content: '130 in 130,000'},
-        {title: 'Active Clinical Trials', content: 'goon moon skibidi '}
+        {title: 'ICD-10', content: data.condition.icd_10},
     ]
 
     let badges = [
@@ -47,71 +53,73 @@
     const icd10Structure = data.condition.icdStructure
 </script>
 <main class="flex">
+    <div class="sideBar px-3 pt-8 fixed left-0 h-screen max-w-[70px]">
+        <ul>
+            <button onclick={()=> window.location.href('/')}>
+                <Search color="#f2f2f2"  />
+            </button>
+        </ul>
+
+    </div>
+    <script lang="ts">
+  import { Tooltip } from "bits-ui";
+  import MagicWand from "phosphor-svelte/lib/MagicWand";
+</script>
+ 
+
     <!-- Main -->
-    <section class="content w-1/2 mx-auto pt-6">
-        <div class="badges">
-            {#each badges as badge}
-                <span class="badge">
-                    {badge.content}
-                </span>
-            {/each}
-        </div>
+    <section class="content w-1/2 max-w-[948px] mx-auto py-8 ">
         <h1>{data.condition.name}</h1>
-        <h3 class="font-serif italic font-medium">Synonyms: Heart Infarct, MI</h3>
+        <h3 class="">ICD-10: {data.condition.icd_10}</h3>
         <p style="">{data.condition.summary}</p>
-        <hr class="my-6">
-        <div class="w-min rounded-b-xl">
-            <h2>Symptoms</h2>
-            <label for="symptomGraph">[01] Percentage of specific symptoms perceived by patients with the condition</label>
-            <Plot y={symptomsName} x={{ domain: [0, 100]}} >
+        <hr>
+
+        <div class="w-amx rounded-b-xl">
+            <Tooltip title={"Symptoms"} information={'Graph shows specific symptoms per hundred patients. Data is not validated and should not be used to make diagnostic decisions.'}></Tooltip>
+            <Plot y={symptomsName.reverse()} x={{ domain: [0, 100]}} >
                 <defs>
                     <LinearGradientX
                         id="temp-gradient"
                         stops={[
-                            { x: 0, color: '#9F9F9F' },
-                            { x: 100, color: '#000000' }
+                            { x: 0, color: '#0d6062' },
+                            { x: 100, color: '#effefc' }
                         ]} />
                     </defs>
-                <BarX data={symptomsPercentage} fill="url(#temp-gradient)"/>
+                <BarX data={symptomsPercentage.reverse()} fill="url(#temp-gradient)"/>
             </Plot>
             
         </div>
 
-        <hr class="my-6">
-
+        <hr>
         <div class="treatmentDiagnosis flex gap-8">
             <!-- Procedures -->
             <div class="procedures flex-1">
-                <h3 class="uppercase font-medium mb-2">Common tests & procedures</h3>
-                <div class="flex flex-wrap gap-1">
+                <h2 class="mb-2">Common Tests & Procedures</h2>
+                <div class="flex flex-col flex-wrap gap-1">
                     {#each procedures as procedure}
-                        <span class="badge">
-                            {procedure}
-                        </span>
+                        <p>{procedure}</p>
                     {/each}
                 </div>
             </div>
 
             <!-- Treatments -->
             <div class="treatments flex-1">
-                <h3 class="uppercase font-medium mb-2">Common treatments</h3>
-                <div class="flex flex-wrap gap-1">
+                <h2 class="mb-2">Common Teatments</h2>
+                <div class="flex flex-col flex-wrap gap-1">
                     {#each treatments as treatment}
-                        <span class="badge">
-                            {treatment}
-                        </span>
+                        <p>{treatment}</p>
                     {/each}
                 </div>
             </div>
         </div>
 
-        <hr class="my-6">
+        <hr>
         <div class="clinicalTrials">
-            <h3 class="uppercase font-medium mb-2">Clinical Trials</h3>
+            <h2 class="mb-2">Clinical Trials</h2>
             {#each clinicalTrials as trial}
                 <a href="https://clinicaltrials.gov/study/{trial.protocolSection.identificationModule.nctId}" target="_blank">
                     <div class="clinicalTrial mb-3 relative">
-                        <span class="font-semibold">
+                        <span class="">
                             {trial.protocolSection.identificationModule.officialTitle}
                         </span> <br>
                         {trial.protocolSection.identificationModule.organization.fullName}
@@ -128,17 +136,20 @@
 
     </section>  
     <!-- Context -->
-    <div class="w-[340px] h-screen px-8 py-8"></div>
-    <div class="contextMenu bg-[#f9f9f9] w-[340px] h-screen px-8 pt-8 border-l border-[#e7e9e8] fixed right-0">
-    {#each icd10Structure as icd}
-        {#if icd[0] == data.condition.icd_10}
-            <p class="text-red-300">{icd[0]} - {icd[1]}</p>
-        {:else}
-            <p>{icd[0]} - {icd[1]}</p>
-        {/if}
-    {/each}
+    <div class="w-[340px] h-screen px-6 py-8"></div>
+    <div class="contextMenu w-[340px] h-screen px-6 pt-8  fixed right-0 flex flex-col justify-between">
+        <div class="icd">
+            {#each icd10Structure as icd}
+                {#if icd[0] == data.condition.icd_10}
+                    <p class="text-red-300"><i>{icd[0]}</i> <br>  <br> {icd[1]}</p>
+                {:else}
+                    <p><i>{icd[0]}</i> <br> {icd[1]}</p>
+                {/if}
+            {/each}
+        </div>
+
         {#each contexts as context}
-            <div class="bg-gray-100 rounded-lg px-3 py-3">
+            <div class="contextCard rounded-lg px-3 py-3">
                 <h3>{context.title}</h3>
                 <p>{context.content}</p>
             </div>
