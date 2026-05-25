@@ -1,13 +1,13 @@
 // server side
 import conditions from './index.json' with { type: 'json' };
-import symptoms from './index.json' with { type: 'json' };
+import symptoms from './symptomsIndex.json' with { type: 'json' };
 import Fuse from 'fuse.js';
 
 async function wikipediaAPI(query: any) {
 	const response = await fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' + query);
 
 	if (!response.ok) {
-		throw new Error('wikipedia is retardet');
+		return "Summary couldn't be loaded";
 	}
 
 	const data = await response.json();
@@ -21,7 +21,7 @@ async function clinicalTrialsAPI(query: any) {
 			'&filter.overallStatus=ACTIVE_NOT_RECRUITING&sort=%40relevance&pageSize=3'
 	);
 	if (!response.ok) {
-		throw new Error('clinicaltrials org is dumb');
+		return 'No Clinical Trials found';
 	}
 
 	const data = await response.json();
@@ -35,7 +35,7 @@ async function clinicalTablesAPI(query: any) {
 	);
 
 	if (!response.ok) {
-		throw new Error('fuck icd');
+		return 'No ICD-10-CM codes found';
 	}
 
 	const data = await response.json();
@@ -61,8 +61,44 @@ export async function resolveCondition(slug: String) {
 	// c.name === slug || c.id === slug || c.name.toLowerCase() === slug.toLowerCase())
 }
 
-export function resolveSymptom(slug: any) {
-	return symptoms.find((c: any) => c.name === slug);
+export function resolveConditionName(query: String, symptom: String) {
+	const condition = conditions.find(
+		(c: any) => c.name.toLowerCase().replace(/\s+/g, '_') === query || c.id === Number(query)
+	);
+
+	if (symptom != null) {
+		const likelihoodSymptom = condition?.symptoms.find((c: any) => c.symptom === symptom);
+		const data = {
+			id: condition?.id,
+			name: condition?.name,
+			icd_10: condition?.icd_10,
+			symptom: likelihoodSymptom?.percentage
+		};
+		return data;
+	} else {
+		const data = {
+			id: condition?.id,
+			name: condition?.name,
+			icd_10: condition?.icd_10
+		};
+		return data;
+	}
+}
+export async function resolveSymptom(slug: String) {
+	const symptom = symptoms.find(
+		(s: any) =>
+			s.symptom.toLowerCase().replace(/\s+/g, '_') === slug ||
+			s.icd_10_name.toLowerCase().replace(/\s+/g, '_') === slug
+	);
+	const wikipediaResults = await wikipediaAPI(symptom?.symptom);
+
+	const data = {
+		...symptom,
+		summary: await wikipediaResults
+	};
+
+	// return symptoms.find((s: any) => s.name === slug);
+	return data;
 }
 
 const fuse = new Fuse(conditions, {

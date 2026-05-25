@@ -10,11 +10,8 @@
 		HTMLTooltip
 	} from 'svelteplot';
 	import { arrowPath } from 'svelteplot/helpers/arrowPath.js';
-	import { onMount } from 'svelte';
-
-	// import { Tooltip } from "bits-ui";
 	import Tooltip from '$lib/components/tooltip.svelte';
-
+	import { onMount } from 'svelte';
 	// Icons
 	import Search from '@lucide/svelte/icons/search';
 	import X from '@lucide/svelte/icons/x';
@@ -63,10 +60,6 @@
 			</button>
 		</ul>
 	</div>
-	<script lang="ts">
-		import { Tooltip } from 'bits-ui';
-		import MagicWand from 'phosphor-svelte/lib/MagicWand';
-	</script>
 
 	<!-- Main -->
 	<section class="content mx-auto w-1/2 max-w-[948px] py-8">
@@ -75,7 +68,7 @@
 		<p style="">{data.condition.summary}</p>
 		<hr />
 
-		<div class="w-amx rounded-b-xl">
+		<div class="w-max rounded-b-xl">
 			<Tooltip
 				title={'Symptoms'}
 				information={'Graph shows specific symptoms per hundred patients. Data is not validated and should not be used to make diagnostic decisions.'}

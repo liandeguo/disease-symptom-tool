@@ -1,5 +1,5 @@
 // client side
-import { resolveCondition } from '$lib/data/index';
+import { resolveCondition } from '$lib/data/';
 import { error } from '@sveltejs/kit';
 
 export const load = async ({ params }: { params: { slug: string } }) => {
