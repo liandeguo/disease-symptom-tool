@@ -83,7 +83,12 @@
 						]}
 					/>
 				</defs>
-				<BarX data={symptomsPercentage.reverse()} fill="url(#temp-gradient)" />
+				<BarX
+					onclick={(e, d) => console.log(e.dataY)}
+					onmouseenter
+					data={symptomsPercentage.reverse()}
+					fill="url(#temp-gradient)"
+				/>
 			</Plot>
 		</div>
 

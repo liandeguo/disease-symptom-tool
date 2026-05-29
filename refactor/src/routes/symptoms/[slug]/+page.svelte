@@ -2,6 +2,7 @@
 	import { resolve } from '$app/paths';
 	import Tooltip from '$lib/components/tooltip.svelte';
 	import { resolveCondition, resolveConditionName } from '$lib/data/index.js';
+	import Search from '@lucide/svelte/icons/search';
 	let { data } = $props();
 
 	const symptom = data.symptom;
@@ -19,7 +20,7 @@
 	<div class="sideBar fixed left-0 h-screen max-w-[70px] px-3 pt-8">
 		<ul>
 			<button onclick={() => window.location.href('/')}>
-				<!-- <Search color="#f2f2f2" /> -->
+				<Search color="#f2f2f2" />
 			</button>
 		</ul>
 	</div>
