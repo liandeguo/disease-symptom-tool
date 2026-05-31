@@ -101,9 +101,20 @@ export async function resolveSymptom(slug: String) {
 	return data;
 }
 
-const fuse = new Fuse(conditions, {
+const fuseConditions = new Fuse(conditions, {
 	keys: [
 		{ name: 'name', weight: 0.7 },
+		{ name: 'icd_10', weight: 0.7 }
+	],
+	threshold: 0.4,
+	includeScore: true,
+	ignoreLocation: true,
+	useExtendedSearch: true
+});
+const fuseSymptoms = new Fuse(symptoms, {
+	keys: [
+		{ name: 'symptom', weight: 0.7 },
+		{ name: 'icd_10_name', weight: 0.7 },
 		{ name: 'icd_10', weight: 0.7 }
 	],
 	threshold: 0.4,
@@ -117,7 +128,21 @@ export function searchConditions(query: string, limit = 10) {
 		return [];
 	}
 
-	const results = fuse.search(query);
+	const results = fuseConditions.search(query);
+
+	return results.slice(0, limit).map((results) => ({
+		...results.item,
+		score: results.score,
+		relevance: Math.round((1 - (results.score || 0)) * 100)
+	}));
+}
+
+export function searchSymptoms(query: string, limit = 10) {
+	if (!query || query.trim().length < 2) {
+		return [];
+	}
+
+	const results = fuseSymptoms.search(query);
 
 	return results.slice(0, limit).map((results) => ({
 		...results.item,

@@ -9,6 +9,7 @@
 		setPlotDefaults,
 		HTMLTooltip
 	} from 'svelteplot';
+	import { goto } from '$app/navigation';
 	import { arrowPath } from 'svelteplot/helpers/arrowPath.js';
 	import Tooltip from '$lib/components/tooltip.svelte';
 	import { onMount } from 'svelte';
@@ -17,7 +18,7 @@
 	import X from '@lucide/svelte/icons/x';
 
 	let { data } = $props();
-	console.log(data);
+
 	setPlotDefaults({
 		height: 400,
 		axis: {
@@ -52,10 +53,15 @@
 	const icd10Structure = data.condition.icdStructure;
 </script>
 
+<svelte:head>
+	<title>{data.condition.name} - Condition | Symptom Explorer</title>
+	<meta name="description" content="{data.condition.summary}">
+</svelte:head>
+
 <main class="flex">
 	<div class="sideBar fixed left-0 h-screen max-w-[70px] px-3 pt-8">
 		<ul>
-			<button onclick={() => window.location.href('/')}>
+			<button onclick={() => goto('/')}>
 				<Search color="#f2f2f2" />
 			</button>
 		</ul>
@@ -84,7 +90,7 @@
 					/>
 				</defs>
 				<BarX
-					onclick={(e, d) => console.log(e.dataY)}
+					// onclick={(e, d) => console.log(e.dataY)}
 					onmouseenter
 					data={symptomsPercentage.reverse()}
 					fill="url(#temp-gradient)"

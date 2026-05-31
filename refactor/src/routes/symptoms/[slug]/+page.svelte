@@ -4,6 +4,7 @@
 	import { resolveCondition, resolveConditionName } from '$lib/data/index.js';
 	import Search from '@lucide/svelte/icons/search';
 	let { data } = $props();
+	import { goto } from '$app/navigation';
 
 	const symptom = data.symptom;
 
@@ -15,11 +16,14 @@
 		};
 	}
 </script>
-
+<svelte:head>
+	<title>{symptom.symptom} - Symptom | Symptom Explorer</title>
+	<meta name="description" content="{symptom.summary}">
+</svelte:head>
 <main class="flex">
 	<div class="sideBar fixed left-0 h-screen max-w-[70px] px-3 pt-8">
 		<ul>
-			<button onclick={() => window.location.href('/')}>
+			<button onclick={() => goto('/')}>
 				<Search color="#f2f2f2" />
 			</button>
 		</ul>
