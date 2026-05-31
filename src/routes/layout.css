@@ -1,0 +1,184 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+:root {
+	--text-xs: 0.75rem;
+	--text-xs--line-height: calc(1 / 0.75);
+	--text-sm: 0.875rem;
+	--text-sm--line-height: calc(1.25 / 0.875);
+	/* Body */
+	--text-base: 1rem;
+	--text-base--line-height: calc(1.5 / 1);
+
+	/* H3 */
+	--text-lg: 1.125rem;
+	--text-lg--line-height: calc(1.75 / 1.125);
+
+	--text-xl: 1.25rem;
+	--text-xl--line-height: calc(1.75 / 1.25);
+	/* H2 */
+	--text-2xl: 1.5rem;
+	--text-2xl--line-height: calc(2 / 1.5);
+
+	/* H1 */
+	--text-5xl: 3rem;
+	--text-5xl--line-height: calc(2.75/3);
+
+	--font-serif: 'Source Serif 4';
+	--font-sans: 'IBM Plex Sans';
+	--font-mono: 'IBM Plex Mono';
+
+	--text: #0d0d0d;
+	--background: #fafafa;
+	--accent: #55f1e7;
+
+	--color-concrete-50: #fafafa;
+	--color-concrete-100: #f2f2f2;
+	--color-concrete-200: #e6e6e6;
+	--color-concrete-300: #d6d6d6;
+	--color-concrete-400: #a5a5a5;
+	--color-concrete-500: #767676;
+	--color-concrete-600: #575757;
+	--color-concrete-700: #434343;
+	--color-concrete-800: #292929;
+	--color-concrete-900: #1a1a1a;
+	--color-concrete-950: #0a0a0a;
+
+	--color-lochinvar-50: #effefc;
+	--color-lochinvar-100: #cafdf7;
+	--color-lochinvar-200: #94fbf0;
+	--color-lochinvar-300: #57f1e6;
+	--color-lochinvar-400: #25dcd5;
+	--color-lochinvar-500: #0cc0bc;
+	--color-lochinvar-600: #069494;
+	--color-lochinvar-700: #0a7a7b;
+	--color-lochinvar-800: #0d6062;
+	--color-lochinvar-900: #105051;
+	--color-lochinvar-950: #022e31;
+}
+
+:root[data-theme='dark'] {
+	--text: #f2f2f2;
+	--background: #050505;
+	--accent: #0eaa9f;
+}
+
+::selection {
+	background: var(--text);
+	color: var(--background);
+}
+
+::-moz-selection {
+	background: var(--text);
+	color: var(--background);
+}
+
+/* Main */
+* {
+	color: var(--text);
+}
+
+body {
+	background-color: var(--background);
+	color: var(--color-text-primary);
+}
+
+/* Fonts */
+h1 {
+	font-size: var(--text-5xl);
+	line-height: var(--text-5xl--line-height);
+	font-family: var(--font-serif);
+	font-weight: 600;
+}
+
+h2 {
+	font-size: var(--text-2xl);
+	line-height: var(--text-2xl--line-height);
+	font-family: var(--font-serif);
+	font-weight: 500;
+}
+
+h3 {
+	font-size: var(--text-lg);
+	line-height: var(--text-lg--line-height);
+	font-family: var(--font-serif);
+	font-weight: 450;
+}
+
+p {
+	font-size: var(--text-base);
+	line-height: var(--text-base--line-height);
+	font-family: var(--font-serif);
+	font-weight: 400;
+}
+
+i {
+	font-family: var(--font-serif);
+	font-weight: 450;
+}
+
+hr {
+	@apply my-6;
+	color: var(--color-concrete-200);
+}
+
+label {
+	font-family: var(--font-mono);
+}
+
+.listElement {
+	@apply my-1 flex rounded-md px-2 py-1;
+	transition: 0.05s;
+}
+
+.listElement:hover {
+	/* @apply bg-[#f1f1f1]; */
+}
+
+.clinicalTrial {
+	position: relative;
+	border-radius: 12px;
+}
+
+.clinicalTrial::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: 12px;
+	background: transparent;
+	z-index: -1;
+	transition:
+		transform 0.2s ease,
+		background 0.2s ease;
+}
+
+.clinicalTrial:hover::before {
+	/* background: #EFEFEF; */
+	transform: scaleX(1.03) scaleY(1.18);
+}
+
+.contextMenu {
+	background-color: var(--color-concrete-100);
+	border: 1px solid var(--color-concrete-200);
+	border-right: 1px;
+}
+
+.contextCard {
+	@apply my-2;
+	background-color: var(--color-concrete-200);
+}
+
+.sideBar {
+	background-color: var(--color-concrete-100);
+	border: 1px solid var(--color-concrete-200);
+	border-left: 1px;
+}
+
+.sideBar button {
+	@apply rounded-xl p-2;
+	background-color: var(--text);
+}
+
+.searchItem .badge {
+	@apply ml-2 rounded-full border-0 bg-black text-white;
+}

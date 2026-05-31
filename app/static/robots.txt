@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://symptom-explorer.liande.me/sitemap.xml
