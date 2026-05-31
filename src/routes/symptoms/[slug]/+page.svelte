@@ -103,6 +103,7 @@
 		<div class="clinicalTrials">
 			<h2 class="mb-2">Clinical Trials</h2>
 		</div> -->
+		<p>For educational and research use only. Not intended for clinical use, diagnosis, treatment, or any real medical decision-making. Do not rely on this system for patient care.</p>
 	</section>
 	<!-- Context -->
 	<div class="h-screen w-[340px] px-6 py-8"></div>

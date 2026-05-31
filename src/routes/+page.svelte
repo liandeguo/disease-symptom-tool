@@ -94,8 +94,9 @@
 			</Command.Root>
 		</div>
 	</div>
-	<div class="flex gap-8 py-8 text-center">
-		<span
+	<div class="flex flex-col items-center justify-center">
+		<div class="flex gap-8 py-8 text-center">
+			<span
 			><h2>700+</h2>
 			<p>Diseases Indexeed</p></span
 		>
@@ -109,6 +110,8 @@
 			><h2>100%</h2>
 			<p>Free</p></span
 		>
+		</div>
+		<p>For educational and research use only. Not intended for clinical use, diagnosis, treatment, or any real medical decision-making. Do not rely on this system for patient care.</p>
 	</div>
 </main>
 
