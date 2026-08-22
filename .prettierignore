@@ -7,3 +7,9 @@ bun.lockb
 
 # Miscellaneous
 /static/
+
+# Generated data files (formatting them creates huge diffs)
+data/*.json
+data/*.csv
+src/lib/data/index.json
+src/lib/data/symptomsIndex.json

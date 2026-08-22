@@ -1,13 +1,12 @@
-// client side
+// server side
 import { resolveCondition } from '$lib/data/';
 import { error } from '@sveltejs/kit';
 
-export const load = async ({ params }: { params: { slug: string } }) => {
-	const { slug } = params;
-	const condition = await resolveCondition(slug.toLowerCase().replace(/\s+/g, '_'));
+export const load = async ({ params }) => {
+	const condition = await resolveCondition(params.slug.toLowerCase().replace(/\s+/g, '_'));
 
 	if (!condition) {
-		throw error(404);
+		error(404, 'Condition not found');
 	}
 
 	return {

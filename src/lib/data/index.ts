@@ -1,104 +1,171 @@
 // server side
-import conditions from './index.json' with { type: 'json' };
-import symptoms from './symptomsIndex.json' with { type: 'json' };
+import conditionsJson from './index.json' with { type: 'json' };
+import symptomsJson from './symptomsIndex.json' with { type: 'json' };
 import Fuse from 'fuse.js';
 
-async function wikipediaAPI(query: any) {
-	const response = await fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' + query);
-
-	if (!response.ok) {
-		return "Summary couldn't be loaded";
-	}
-
-	const data = await response.json();
-	return data.extract;
+interface ConditionRecord {
+	id: number;
+	name: string;
+	icd_10: string;
+	symptoms: { symptom: string; percentage: number }[];
+	commonTestProcedures?: string[];
+	commonMedication?: string[];
 }
 
-async function clinicalTrialsAPI(query: any) {
-	const response = await fetch(
-		'https://clinicaltrials.gov/api/v2/studies?format=json&query.cond=' +
-			query +
-			'&filter.overallStatus=ACTIVE_NOT_RECRUITING&sort=%40relevance&pageSize=3'
-	);
-	if (!response.ok) {
-		return 'No Clinical Trials found';
-	}
-
-	const data = await response.json();
-	return data.studies;
+interface SymptomRecord {
+	symptom: string;
+	id: number[];
+	icd_10_name?: string;
+	icd_10?: string;
 }
 
-async function clinicalTablesAPI(query: any) {
-	let icd_main = query.split('.')[0];
-	const response = await fetch(
-		'https://clinicaltables.nlm.nih.gov/api/icd10cm/v3/search?sf=code,name&terms=' + icd_main
-	);
-
-	if (!response.ok) {
-		return 'No ICD-10-CM codes found';
-	}
-
-	const data = await response.json();
-	return data[data.length - 1];
-}
-
-export async function resolveCondition(slug: String) {
-	const condition = conditions.find(
-		(c: any) => c.name.toLowerCase().replace(/\s+/g, '_') === slug || c.id === Number(slug)
-	);
-	const wikipediaResults = await wikipediaAPI(condition?.name);
-	const clinicalTrials = await clinicalTrialsAPI(condition?.name);
-	const icd_main = await clinicalTablesAPI(condition?.icd_10);
-
-	const data = {
-		...condition,
-		summary: await wikipediaResults,
-		clinicalTrials: await clinicalTrials,
-		icdStructure: await icd_main
+export interface ClinicalTrial {
+	protocolSection?: {
+		identificationModule?: {
+			nctId?: string;
+			officialTitle?: string;
+			organization?: { fullName?: string };
+		};
+		statusModule?: {
+			startDateStruct?: { date?: string };
+			primaryCompletionDateStruct?: { date?: string };
+		};
+		designModule?: { enrollmentInfo?: { count?: number } };
 	};
-	return data;
-	// return conditions.find((c: any) =>
-	// c.name === slug || c.id === slug || c.name.toLowerCase() === slug.toLowerCase())
 }
 
-export function resolveConditionName(query: String, symptom: String) {
+export interface ResolvedCondition extends ConditionRecord {
+	summary: string | null;
+	clinicalTrials: ClinicalTrial[];
+	icdStructure: [string, string][];
+}
+
+export interface ResolvedSymptom extends SymptomRecord {
+	summary: string | null;
+}
+
+const conditions = conditionsJson as ConditionRecord[];
+const symptoms = symptomsJson as SymptomRecord[];
+
+const CACHE_TTL_MS = 10 * 60 * 1000;
+const CACHE_MAX_ENTRIES = 500;
+
+const responseCache = new Map<string, { expires: number; value: unknown }>();
+
+async function cached<T>(key: string, load: () => Promise<T>): Promise<T> {
+	const hit = responseCache.get(key);
+	if (hit && hit.expires > Date.now()) {
+		return hit.value as T;
+	}
+
+	const value = await load();
+	responseCache.set(key, { expires: Date.now() + CACHE_TTL_MS, value });
+
+	if (responseCache.size > CACHE_MAX_ENTRIES) {
+		for (const [k, entry] of responseCache) {
+			if (entry.expires <= Date.now()) responseCache.delete(k);
+		}
+	}
+	return value;
+}
+
+async function getJson(url: string): Promise<unknown> {
+	try {
+		const response = await fetch(url, { signal: AbortSignal.timeout(8_000) });
+		if (!response.ok) return null;
+		return await response.json();
+	} catch {
+		return null;
+	}
+}
+
+function normalizeName(name: string) {
+	return name.toLowerCase().replace(/\s+/g, '_');
+}
+
+async function wikipediaAPI(term?: string): Promise<string | null> {
+	if (!term) return null;
+
+	return cached(`wiki:${term}`, async () => {
+		const data = (await getJson(
+			'https://en.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(term)
+		)) as { extract?: string } | null;
+		return data?.extract ?? null;
+	});
+}
+
+async function clinicalTrialsAPI(conditionName?: string): Promise<ClinicalTrial[]> {
+	if (!conditionName) return [];
+
+	return cached(`trials:${conditionName}`, async () => {
+		const url =
+			'https://clinicaltrials.gov/api/v2/studies?format=json&query.cond=' +
+			encodeURIComponent(conditionName) +
+			'&filter.overallStatus=ACTIVE_NOT_RECRUITING&sort=%40relevance&pageSize=3';
+		const data = (await getJson(url)) as { studies?: ClinicalTrial[] } | null;
+		return data?.studies ?? [];
+	});
+}
+
+async function clinicalTablesAPI(icdCode?: string): Promise<[string, string][]> {
+	if (!icdCode) return [];
+
+	return cached(`icd:${icdCode}`, async () => {
+		const url =
+			'https://clinicaltables.nlm.nih.gov/api/icd10cm/v3/search?sf=code,name&terms=' +
+			encodeURIComponent(icdCode.split('.')[0]);
+		const data = await getJson(url);
+		const rows = Array.isArray(data) ? (data[data.length - 1] as unknown) : null;
+		return Array.isArray(rows) ? (rows as [string, string][]) : [];
+	});
+}
+
+export async function resolveCondition(slug: string): Promise<ResolvedCondition | null> {
+	const condition = conditions.find((c) => normalizeName(c.name) === slug || c.id === Number(slug));
+
+	if (!condition) return null;
+
+	const [summary, clinicalTrials, icdStructure] = await Promise.all([
+		wikipediaAPI(condition.name),
+		clinicalTrialsAPI(condition.name),
+		clinicalTablesAPI(condition.icd_10)
+	]);
+
+	return { ...condition, summary, clinicalTrials, icdStructure };
+}
+
+export function resolveConditionName(
+	query: string | number,
+	symptom?: string
+): { id: number; name: string; icd_10: string; symptom?: number } | null {
 	const condition = conditions.find(
-		(c: any) => c.name.toLowerCase().replace(/\s+/g, '_') === query || c.id === Number(query)
+		(c) => normalizeName(c.name) === query || c.id === Number(query)
 	);
+
+	if (!condition) return null;
 
 	if (symptom != null) {
-		const likelihoodSymptom = condition?.symptoms.find((c: any) => c.symptom === symptom);
-		const data = {
-			id: condition?.id,
-			name: condition?.name,
-			icd_10: condition?.icd_10,
-			symptom: likelihoodSymptom?.percentage
+		return {
+			id: condition.id,
+			name: condition.name,
+			icd_10: condition.icd_10,
+			symptom: condition.symptoms.find((s) => s.symptom === symptom)?.percentage
 		};
-		return data;
-	} else {
-		const data = {
-			id: condition?.id,
-			name: condition?.name,
-			icd_10: condition?.icd_10
-		};
-		return data;
 	}
+	return { id: condition.id, name: condition.name, icd_10: condition.icd_10 };
 }
-export async function resolveSymptom(slug: String) {
+
+export async function resolveSymptom(slug: string): Promise<ResolvedSymptom | null> {
 	const symptom = symptoms.find(
-		(s: any) =>
-			s.symptom.toLowerCase().replace(/\s+/g, '_') === slug ||
-			s.icd_10_name.toLowerCase().replace(/\s+/g, '_') === slug
+		(s) =>
+			normalizeName(s.symptom) === slug ||
+			(s.icd_10_name ? normalizeName(s.icd_10_name) === slug : false)
 	);
-	const wikipediaResults = await wikipediaAPI(symptom?.symptom);
 
-	const data = {
-		...symptom,
-		summary: await wikipediaResults
-	};
+	if (!symptom) return null;
 
-	// return symptoms.find((s: any) => s.name === slug);
-	return data;
+	const summary = await wikipediaAPI(symptom.symptom);
+	return { ...symptom, summary };
 }
 
 const fuseConditions = new Fuse(conditions, {
@@ -111,6 +178,7 @@ const fuseConditions = new Fuse(conditions, {
 	ignoreLocation: true,
 	useExtendedSearch: true
 });
+
 const fuseSymptoms = new Fuse(symptoms, {
 	keys: [
 		{ name: 'symptom', weight: 0.7 },
@@ -123,30 +191,48 @@ const fuseSymptoms = new Fuse(symptoms, {
 	useExtendedSearch: true
 });
 
-export function searchConditions(query: string, limit = 10) {
-	if (!query || query.trim().length < 2) {
-		return [];
-	}
-
-	const results = fuseConditions.search(query);
-
-	return results.slice(0, limit).map((results) => ({
-		...results.item,
-		score: results.score,
-		relevance: Math.round((1 - (results.score || 0)) * 100)
-	}));
+export interface ConditionSearchResult {
+	id: number;
+	name: string;
+	icd_10: string;
+	relevance: number;
 }
 
-export function searchSymptoms(query: string, limit = 10) {
+export interface SymptomSearchResult {
+	symptom: string;
+	icd_10_name?: string;
+	icd_10?: string;
+	relevance: number;
+}
+
+export function searchConditions(query: string, limit = 10): ConditionSearchResult[] {
 	if (!query || query.trim().length < 2) {
 		return [];
 	}
 
-	const results = fuseSymptoms.search(query);
+	return fuseConditions
+		.search(query.trim())
+		.slice(0, limit)
+		.map(({ item, score }) => ({
+			id: item.id,
+			name: item.name,
+			icd_10: item.icd_10,
+			relevance: Math.round((1 - (score || 0)) * 100)
+		}));
+}
 
-	return results.slice(0, limit).map((results) => ({
-		...results.item,
-		score: results.score,
-		relevance: Math.round((1 - (results.score || 0)) * 100)
-	}));
+export function searchSymptoms(query: string, limit = 10): SymptomSearchResult[] {
+	if (!query || query.trim().length < 2) {
+		return [];
+	}
+
+	return fuseSymptoms
+		.search(query.trim())
+		.slice(0, limit)
+		.map(({ item, score }) => ({
+			symptom: item.symptom,
+			icd_10_name: item.icd_10_name,
+			icd_10: item.icd_10,
+			relevance: Math.round((1 - (score || 0)) * 100)
+		}));
 }

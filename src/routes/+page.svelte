@@ -1,39 +1,76 @@
 <script lang="ts">
 	import { Command } from 'bits-ui';
-	import { MeshGradient } from '@devmischief/shaders-svelte';
-	import GitHub from '$lib/assets/github.svg'
+	import GitHub from '$lib/assets/github.svg';
+
+	interface SearchHit {
+		name?: string;
+		symptom?: string;
+		icd_10?: string;
+	}
+
+	const MIN_QUERY_LENGTH = 2;
+	const SEARCH_DEBOUNCE_MS = 200;
+
 	let query = $state('');
-	let results = $state<{ name: string; icd_10: string; symptom: string }[]>([]);
-	let loading = $state();
+	let results = $state<SearchHit[]>([]);
+	let loading = $state(false);
+	let searchFailed = $state(false);
+
+	let debounceTimer: ReturnType<typeof setTimeout> | undefined;
+	let activeRequest: AbortController | undefined;
+	let requestSequence = 0;
 
 	async function search() {
-		if (query.trim().length < 2) {
+		clearTimeout(debounceTimer);
+
+		if (query.trim().length < MIN_QUERY_LENGTH) {
+			activeRequest?.abort();
 			results = [];
+			loading = false;
+			searchFailed = false;
 			return;
 		}
 
-		loading = true;
-		try {
-			const req = await fetch('/api/search?q=' + encodeURIComponent(query));
+		debounceTimer = setTimeout(runSearch, SEARCH_DEBOUNCE_MS);
+	}
 
-			results = await req.json();	
+	async function runSearch() {
+		const requestId = ++requestSequence;
+		activeRequest?.abort();
+		activeRequest = new AbortController();
+
+		loading = true;
+		searchFailed = false;
+
+		try {
+			const req = await fetch('/api/search?q=' + encodeURIComponent(query.trim()), {
+				signal: activeRequest.signal
+			});
+			const data = await req.json();
+			// Ignore stale responses that arrive after a newer query.
+			if (requestId === requestSequence) {
+				results = data;
+			}
 		} catch (error) {
-			console.log('Error while searching')
+			if (requestId === requestSequence && (error as Error).name !== 'AbortError') {
+				searchFailed = true;
+			}
 		} finally {
-			loading = false;
+			if (requestId === requestSequence) {
+				loading = false;
+			}
 		}
 	}
 </script>
 
-
-
-<nav class="fixed z-50 w-screen px-6 py-8 flex justify-between">
+<nav class="fixed z-50 flex w-screen justify-between px-6 py-8">
 	<h3><b>Symptom Explorer</b> | Asclevor</h3>
 	<span class="flex items-center gap-3">
 		<a href="https://liande.me" target="_blank" class="underline">Leander Guo</a>
-		<a href="https://github.com/liandeguo/disease-symptom-tool" target="_blank"><img src="{GitHub}" width="24px" alt=""></a>
+		<a href="https://github.com/liandeguo/disease-symptom-tool" target="_blank"
+			><img src={GitHub} width="24px" alt="GitHub repository" /></a
+		>
 	</span>
-	
 </nav>
 <main
 	class="relative flex h-screen w-screen flex-col items-center justify-between bg-(--color-concrete-100)"
@@ -51,10 +88,10 @@
 			>
 				<Command.Input
 					class="focus-override h-input placeholder:text-foreground-alt/50 bg-background inline-flex truncate rounded-tl-xl rounded-tr-xl px-4 py-4 text-sm shadow-[0px_0px_100px_3px_rgba(0,_0,_0,_0.1)] transition-colors focus:ring-0 focus:outline-hidden"
-					placeholder="Search for a condition using it's name or ICD-10-CM"
+					placeholder="Search for a condition using its name or ICD-10-CM"
 					bind:value={query}
 				/>
-				{#if query.trim().length > 2}
+				{#if query.trim().length >= MIN_QUERY_LENGTH}
 					<div class="absolute w-178 translate-y-16 rounded-2xl bg-white px-1 py-1">
 						<Command.List
 							class=" overflow-x-hidden rounded-xl bg-white px-4 py-4 shadow-[0px_0px_100px_3px_rgba(0,_0,_0,_0.1)]"
@@ -63,10 +100,16 @@
 								<Command.Empty
 									class="text-muted-foreground flex w-full items-center justify-center pt-8 pb-6 text-sm"
 								>
-									No results found.
+									{#if searchFailed}
+										Something went wrong. Please try again.
+									{:else if loading}
+										Searching…
+									{:else}
+										No results found.
+									{/if}
 								</Command.Empty>
 								<Command.Group>
-									<Command.GroupItems class="overflow-y-scroll h-[30vh]">
+									<Command.GroupItems class="h-[30vh] overflow-y-scroll">
 										{#each results as result}
 											{#if result.name}
 												<a href="/conditions/{result.name}">
@@ -78,12 +121,13 @@
 											{:else if result.symptom}
 												<a href="/symptoms/{result.symptom}">
 													<Command.Item class="searchItem flex items-center py-1">
-														<span class="badge mr-4 px-2 py-1" style="background-color: grey;">{result.icd_10}</span>
+														<span class="badge mr-4 px-2 py-1" style="background-color: grey;"
+															>{result.icd_10}</span
+														>
 														{result.symptom}
 													</Command.Item>
 												</a>
 											{/if}
-											
 										{/each}
 									</Command.GroupItems>
 								</Command.Group>
@@ -97,21 +141,24 @@
 	<div class="flex flex-col items-center justify-center">
 		<div class="flex gap-8 py-8 text-center">
 			<span
-			><h2>700+</h2>
-			<p>Diseases Indexeed</p></span
-		>
-		<span class="h-full border"></span>
-		<span
-			><h2>300+</h2>
-			<p>Symptoms Indexed</p></span
-		>
-		<span class="h-full border"></span>
-		<span
-			><h2>100%</h2>
-			<p>Free</p></span
-		>
+				><h2>700+</h2>
+				<p>Diseases Indexed</p></span
+			>
+			<span class="h-full border"></span>
+			<span
+				><h2>300+</h2>
+				<p>Symptoms Indexed</p></span
+			>
+			<span class="h-full border"></span>
+			<span
+				><h2>100%</h2>
+				<p>Free</p></span
+			>
 		</div>
-		<p>For educational and research use only. Not intended for clinical use, diagnosis, treatment, or any real medical decision-making. Do not rely on this system for patient care.</p>
+		<p>
+			For educational and research use only. Not intended for clinical use, diagnosis, treatment, or
+			any real medical decision-making. Do not rely on this system for patient care.
+		</p>
 	</div>
 </main>
 

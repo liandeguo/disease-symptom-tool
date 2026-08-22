@@ -1,18 +1,13 @@
 <script>
-	import { cn } from "$lib/utils.js";
+	import { cn } from '$lib/utils.js';
 
-	let {
-		ref = $bindable(null),
-		class: className,
-		children,
-		...restProps
-	} = $props();
+	let { ref = $bindable(null), class: className, children, ...restProps } = $props();
 </script>
 
 <div
 	bind:this={ref}
 	data-slot="sheet-header"
-	class={cn("gap-0.5 p-4 flex flex-col", className)}
+	class={cn('flex flex-col gap-0.5 p-4', className)}
 	{...restProps}
 >
 	{@render children?.()}
